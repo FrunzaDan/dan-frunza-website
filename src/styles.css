@@ -1,1 +1,496 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --main-red-color: #DB3B57;
+    --main-red-color-alpha: 219, 59, 87;
+    --main-light-color: #F5F5F5;
+    --main-light-color-aplha: 245, 245, 245;
+    --main-dark-color: #2B2B2B;
+    --main-dark-color-alpha: 43, 43, 43;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--main-dark-color);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    background: var(--main-light-color);
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
+.selected-btn {
+    box-shadow: 0.4rem 1rem 2rem rgba(255, 255, 255, 0.8);
+}
+
+*,
+*::before,
+*::after {
+    font-family: Helvetica;
+    color: var(--main-dark-color);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.content-container {
+    padding: 0 4rem;
+}
+
+.no-margin {
+    margin: 0;
+    padding: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.form-control:focus {
+    border-color: var(--red);
+    box-shadow: none;
+}
+
+iframe {
+    outline: none !important;
+    border: none !important;
+}
+
+iframe:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+.gm-style iframe+div {
+    border: none !important;
+}
+
+.invalid-feedback {
+    color: var(--white);
+}
+
+.card {
+    border: none;
+    border-radius: 1.4rem;
+    color: var(--white);
+    background:
+        rgba(var(--main-red-for-alpha), 0.8);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 8px 16px;
+}
+
+.card-img-top {
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+}
+
+.subtitle-1 {
+    font-family: var(--bold-font);
+    font-size: 4rem;
+}
+
+.subtitle-2 {
+    font-family: var(--regular-font);
+    font-size: 2rem;
+}
+
+.custom-card-primary {
+    border: 0.4rem var(--main-dark-color) solid;
+    border-radius: 2rem;
+    background: var(--main-light-color);
+    color: var(--main-dark-color);
+}
+
+.custom-card-third {
+    border: 0.4rem var(--main-red-color) solid;
+    border-radius: 2rem;
+    background: var(--main-red-color);
+    color: var(--main-light-color);
+}
+
+.custom-subtitle-1 {
+    font-size: 4rem;
+}
+
+.text-color-red {
+    color: var(--red);
+}
+
+.form-control {
+    border: 1px solid var(--red);
+}
+
+.text-color-white {
+    color: var(--white) !important;
+}
+
+.width-100prc {
+    width: 100%;
+}
+
+.hover-logo {
+    position: relative;
+    transition: all .2s;
+    transform-origin: 50% 50%;
+}
+
+.hover-item {
+    position: relative;
+    transition: all .2s;
+    transform-origin: 50% 50%;
+}
+
+.hover-text {
+    position: relative;
+    transition: all .2s;
+    transform-origin: 50% 50%;
+}
+
+.hover-card {
+    position: relative;
+    transition: all .2s;
+    transform-origin: 50% 50%;
+}
+
+.item-title {
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.timeline-item-experience {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding: 2rem 0rem;
+}
+
+.timeline-item-projects {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding: 2rem 0rem;
+}
+
+.timeline-item-projects-top {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+}
+
+.timeline-item-projects-bottom {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+}
+
+.left-part {
+    width: 33%;
+    display: table-cell;
+    padding-left: 0.8rem;
+    padding-right: 1.4rem;
+    min-height: 100%;
+    text-align: right;
+    vertical-align: top;
+}
+
+.btn-primary {
+    border: 0.2rem var(--main-dark-color) solid;
+    background-color: var(--main-dark-color);
+    padding: 0.4rem;
+    width: 100%;
+    border-radius: 1rem;
+    font-size: 2rem;
+}
+
+.img-primary {
+    border-radius: 1rem;
+    border: 0.4rem var(--main-red-color) solid;
+}
+
+.right-part {
+    width: 67%;
+    display: table-cell;
+    padding-left: 25px;
+    padding-right: 1.4rem;
+    vertical-align: top;
+}
+
+.divider-card {
+    position: absolute;
+    left: 33%;
+    width: 2px;
+    background-color: var(--main-dark-color);
+    top: 0;
+    bottom: 0;
+}
+
+.divider {
+    position: absolute;
+    top: 0;
+    left: 33%;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--main-dark-color);
+}
+
+.divider:after {
+    content: '';
+    display: block;
+    margin-top: 3rem;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -0.45rem;
+    border-radius: 0.5rem;
+    border: 2px solid;
+    color: var(--main-red-color);
+    background-color: var(--main-light-color);
+    animation: pulseAnimation 1.6s infinite;
+}
+
+.divider-top {
+    position: absolute;
+    top: 0;
+    left: 33%;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--main-dark-color);
+}
+
+.divider-top:after {
+    content: '';
+    display: block;
+    margin-top: 7rem;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -0.45rem;
+    border-radius: 0.5rem;
+    border: 2px solid;
+    color: var(--main-red-color);
+    background-color: var(--main-light-color);
+    animation: pulseAnimation 1.6s infinite;
+}
+
+.experience-card-title {
+    position: relative;
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+
+.projects-card-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0rem 4rem;
+}
+
+.text-inside-description {
+    font-size: 1.6rem;
+    text-wrap: balance;
+}
+
+/* VERY LARGE SCREENS: */
+@media only screen and (min-width: 1100px) {
+    .item-company {
+        font-size: 2rem;
+    }
+}
+
+/* LARGE SCREENS: */
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+    .item-company {
+        font-size: 1.5rem;
+    }
+
+    .content-container {
+        padding: 0 2rem;
+    }
+}
+
+/* SMALL SCREENS: */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .item-company {
+        font-size: 1.2rem;
+    }
+
+    .text-inside-description {
+        font-size: 1.2rem;
+    }
+
+    .experience-card-title {
+        font-size: 4rem;
+        width: 100%;
+    }
+
+    .content-container {
+        padding: 0 1rem;
+    }
+
+    .projects-card-container {
+        padding: 0rem 2rem;
+    }
+}
+
+/* VERY SMALL SCREENS: */
+@media only screen and (max-width: 576px) {
+
+    .content-container {
+        padding: 0;
+    }
+
+    .item-company {
+        font-size: 1rem;
+    }
+
+    .text-inside-description {
+        font-size: 1rem;
+    }
+
+    .experience-card-title {
+        font-size: 3rem;
+        width: 100%;
+    }
+
+    .projects-card-container {
+        padding: 0rem 1rem;
+    }
+
+    .item-title {
+        font-size: 1.6rem;
+        display: inline-block;
+    }
+}
+
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+@media (pointer: fine) {
+    .hover-item:hover {
+        transform: scale(1.1);
+    }
+
+    .hover-text:hover {
+        transform: scale(1.04);
+        filter: drop-shadow(4px 4px var(--main-red-color));
+    }
+
+    .hover-card:hover {
+        transform: scale(1.04);
+    }
+
+    .hover-logo:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--white) !important;
+        border-color: var(--red) !important;
+        color: var(--red) !important;
+
+        .cart-icon {
+            -webkit-filter: brightness(0) saturate(100%) invert(16%) sepia(88%) saturate(2965%) hue-rotate(350deg) brightness(86%) contrast(128%);
+            filter: brightness(0) saturate(100%) invert(16%) sepia(88%) saturate(2965%) hue-rotate(350deg) brightness(86%) contrast(128%)
+        }
+    }
+
+    .btn-primary:active {
+        background-color: var(--red) !important;
+        border-color: var(--white) !important;
+        color: var(--white) !important;
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--white) !important;
+        border-color: var(--violet) !important;
+        color: var(--violet) !important;
+    }
+
+    .btn-secondary:active {
+        background-color: var(--violet) !important;
+        border-color: var(--white) !important;
+        color: var(--white) !important;
+    }
+
+    .SAL-SOL:hover {
+        transform: scale(1.04);
+        filter: drop-shadow(6px 6px var(--red));
+    }
+
+
+}
+
+@media (hover: none),
+(pointer: coarse) {
+    .hover-item:active {
+        transform: scale(1.1);
+    }
+
+    .hover-text:active {
+        transform: scale(1.04);
+        filter: drop-shadow(4px 4px var(--main-red-color));
+    }
+
+    .hover-card:active {
+        transform: scale(1.1);
+    }
+
+    .hover-logo:active {
+        transform: scale(1.1);
+    }
+
+    .btn-primary:active {
+        background-color: var(--white) !important;
+        border-color: var(--red) !important;
+        color: var(--red) !important;
+    }
+
+    .btn-secondary:active {
+        background-color: var(--white) !important;
+        border-color: var(--violet) !important;
+        color: var(--red) !important;
+    }
+
+    .SAL-SOL:active {
+        transform: scale(1.04);
+    }
+}
