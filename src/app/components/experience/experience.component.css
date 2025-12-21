@@ -33,6 +33,19 @@
   transition: all 0.2s;
 }
 
+.company-logo {
+  max-width: 12rem;
+  height: auto;
+}
+
+.timeline-item-experience {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 3rem 0rem;
+}
+
 .experience-card-title {
   perspective: 1000px; /* Slightly more depth for stronger effect */
 }
