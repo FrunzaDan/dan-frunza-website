@@ -1,0 +1,133 @@
+.custom-card-contact {
+  padding: 3rem;
+  height: 100%;
+}
+
+.contact-card-title {
+  font-weight: 600;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.contact-card-subtitle {
+  margin-bottom: 2rem;
+}
+
+/* ---------- Form (left card) ---------- */
+
+.contact-form-field {
+  margin-bottom: 1.4rem;
+}
+
+.contact-form-label {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.contact-required-marker {
+  color: var(--main-red-color);
+}
+
+.contact-optional-marker {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: rgba(var(--main-dark-color-alpha), 0.6);
+}
+
+.contact-form .form-control {
+  width: 100%;
+  border: 0.15rem solid var(--main-dark-color);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 1.4rem;
+  background: var(--main-light-color);
+}
+
+.contact-form textarea.form-control {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.contact-form .form-control:focus {
+  outline: none;
+  border-color: var(--main-red-color);
+  box-shadow: 0 0 0 0.2rem rgba(var(--main-red-color-alpha), 0.25);
+}
+
+.contact-form .form-control.is-invalid {
+  border-color: var(--main-red-color);
+}
+
+.contact-invalid-feedback {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--main-red-color);
+}
+
+.contact-submit {
+  margin-top: 0.6rem;
+  cursor: pointer;
+}
+
+.contact-success-note {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  color: var(--main-red-color);
+}
+
+/* ---------- Info card (right card) ---------- */
+
+.contact-info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-info-icon {
+  display: flex;
+  flex: none;
+  color: var(--main-light-color);
+}
+
+.contact-info-link {
+  font-size: 1.5rem;
+  word-break: break-word;
+}
+
+/* MID-LARGE SCREENS: */
+@media only screen and (min-width: 769px) and (max-width: 1219px) {
+  .contact-card-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* MID SCREENS: */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .custom-card-contact {
+    padding: 2.25rem;
+  }
+
+  .contact-card-title {
+    font-size: 2rem;
+  }
+}
+
+/* SMALL SCREENS: */
+@media only screen and (max-width: 576px) {
+  .custom-card-contact {
+    padding: 1.75rem;
+  }
+
+  .contact-card-title {
+    font-size: 1.8rem;
+  }
+}

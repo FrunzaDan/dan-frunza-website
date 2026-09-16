@@ -1,12 +1,286 @@
 <div class="content-container">
-    <div class="container-fluid py-4">
-        <div class="row py-2">
-            <div class="col-sm-6 py-2">
-                <div class="custom-card-primary w-100 p-2"></div>
+  <div class="container-fluid py-4">
+    <div class="row py-2">
+      <div class="col-sm-6 py-2">
+        <div class="custom-card-primary w-100 p-2 custom-card-contact">
+          <p class="contact-card-title">Contact Me</p>
+          <p class="text-inside-description contact-card-subtitle">
+            Have a project in mind or just want to say hi? Fill in the form
+            below and I'll get back to you.
+          </p>
+
+          <form
+            [formGroup]="contactForm"
+            (ngSubmit)="onSubmit()"
+            class="contact-form"
+            novalidate
+          >
+            <div class="contact-form-field">
+              <label for="contact-name" class="contact-form-label">
+                Name <span class="contact-required-marker">*</span>
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                formControlName="name"
+                autocomplete="name"
+                class="form-control"
+                [class.is-invalid]="
+                  contactForm.controls.name.invalid &&
+                  (contactForm.controls.name.touched || submitted)
+                "
+              />
+              @if (
+                contactForm.controls.name.invalid &&
+                (contactForm.controls.name.touched || submitted)
+              ) {
+                <p class="contact-invalid-feedback">
+                  @if (contactForm.controls.name.hasError('required')) {
+                    Please enter your name.
+                  } @else if (contactForm.controls.name.hasError('minlength')) {
+                    Name must be at least 2 characters.
+                  }
+                </p>
+              }
             </div>
-            <div class="col-sm-6 py-2">
-                <div class="custom-card-primary w-100 p-2"></div>
+
+            <div class="contact-form-field">
+              <label for="contact-email" class="contact-form-label">
+                Email <span class="contact-required-marker">*</span>
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                formControlName="email"
+                autocomplete="email"
+                class="form-control"
+                [class.is-invalid]="
+                  contactForm.controls.email.invalid &&
+                  (contactForm.controls.email.touched || submitted)
+                "
+              />
+              @if (
+                contactForm.controls.email.invalid &&
+                (contactForm.controls.email.touched || submitted)
+              ) {
+                <p class="contact-invalid-feedback">
+                  @if (contactForm.controls.email.hasError('required')) {
+                    Please enter your email address.
+                  } @else if (contactForm.controls.email.hasError('email')) {
+                    Please enter a valid email address.
+                  }
+                </p>
+              }
             </div>
+
+            <div class="contact-form-field">
+              <label for="contact-phone" class="contact-form-label">
+                Phone Number
+                <span class="contact-optional-marker">(optional)</span>
+              </label>
+              <input
+                id="contact-phone"
+                type="tel"
+                formControlName="phone"
+                autocomplete="tel"
+                class="form-control"
+                [class.is-invalid]="
+                  contactForm.controls.phone.invalid &&
+                  (contactForm.controls.phone.touched || submitted)
+                "
+              />
+              @if (
+                contactForm.controls.phone.invalid &&
+                (contactForm.controls.phone.touched || submitted)
+              ) {
+                <p class="contact-invalid-feedback">
+                  Please enter a valid phone number.
+                </p>
+              }
+            </div>
+
+            <div class="contact-form-field">
+              <label for="contact-message" class="contact-form-label">
+                Message <span class="contact-required-marker">*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                formControlName="message"
+                rows="4"
+                class="form-control"
+                [class.is-invalid]="
+                  contactForm.controls.message.invalid &&
+                  (contactForm.controls.message.touched || submitted)
+                "
+              ></textarea>
+              @if (
+                contactForm.controls.message.invalid &&
+                (contactForm.controls.message.touched || submitted)
+              ) {
+                <p class="contact-invalid-feedback">
+                  @if (contactForm.controls.message.hasError('required')) {
+                    Please enter a message.
+                  } @else if (
+                    contactForm.controls.message.hasError('minlength')
+                  ) {
+                    Message must be at least 10 characters.
+                  }
+                </p>
+              }
+            </div>
+
+            <button type="submit" class="btn-primary contact-submit">
+              Send Message
+            </button>
+
+            @if (submitted && contactForm.valid) {
+              <p class="contact-success-note">
+                Thanks! Sending isn't wired up yet, but your message was
+                validated successfully.
+              </p>
+            }
+          </form>
         </div>
+      </div>
+
+      <div class="col-sm-6 py-2">
+        <div class="custom-card-third w-100 p-2 custom-card-contact">
+          <p class="contact-card-title">Get in Touch</p>
+          <p class="text-inside-description contact-card-subtitle">
+            Prefer a different channel? Reach me directly here.
+          </p>
+
+          <ul class="contact-info-list">
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="2"
+                    y="5"
+                    width="20"
+                    height="14"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                  <path
+                    d="M3 7l9 6 9-6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <a
+                href="mailto:your.email@example.com"
+                class="contact-info-link hover-text"
+                >your.email@example.com</a
+              >
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 4h3.6l1.4 4-2 1.4a11 11 0 0 0 5.6 5.6l1.4-2 4 1.4V18a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <a href="tel:+12345678900" class="contact-info-link hover-text"
+                >+1 234 567 8900</a
+              >
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                  <path
+                    d="M14 8.5h-1.4c-.9 0-1.4.5-1.4 1.4V11H14l-.3 2.2h-1.9V19h-2.3v-5.8H8V11h1.5V9.6C9.5 7.6 10.6 6.5 12.4 6.5H14v2z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <a
+                href="https://facebook.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                class="contact-info-link hover-text"
+                >facebook.com/yourusername</a
+              >
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                  <circle cx="7.2" cy="8" r="1.3" fill="currentColor" />
+                  <path
+                    d="M6.2 11h2v7h-2z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M10.8 11h2v1.2c.5-.8 1.3-1.4 2.4-1.4 1.9 0 2.8 1.2 2.8 3.4V18h-2v-3.4c0-1-.4-1.7-1.4-1.7-.8 0-1.4.5-1.6 1.1-.1.2-.1.4-.1.7V18h-2v-7z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                class="contact-info-link hover-text"
+                >linkedin.com/in/yourusername</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

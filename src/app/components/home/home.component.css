@@ -62,6 +62,124 @@
   }
 }
 
+.custom-card-about {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem;
+}
+
+.about-shape {
+  position: absolute;
+  top: -45%;
+  right: -18%;
+  width: 65%;
+  height: 190%;
+  background: linear-gradient(
+    45deg,
+    rgba(var(--main-red-color-alpha), 0.45) 0%,
+    var(--main-red-color) 100%
+  );
+  border-radius: 31% 69% 30% 70% / 70% 40% 60% 30%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-content {
+  position: relative;
+  z-index: 1;
+  max-width: 48rem;
+}
+
+.custom-card-about-mirror .about-shape {
+  right: auto;
+  left: -18%;
+}
+
+.custom-card-about-mirror .about-content {
+  margin-left: auto;
+  text-align: right;
+}
+
+.about-title {
+  font-weight: 600;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  margin-bottom: 0.8rem;
+}
+
+.about-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Bold lava-lamp motion for the decorative blob behind the About cards. */
+@media (prefers-reduced-motion: no-preference) {
+  .about-shape {
+    animation: liquid-1 6s linear infinite;
+  }
+}
+
+/* Progressive enhancement: scroll-linked parallax drift + reveal-on-scroll,
+   only where the browser supports scroll-driven animations. Falls back
+   gracefully to the static/looping states above everywhere else. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-shape {
+      animation: liquid-1 6s linear infinite, about-parallax linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, cover;
+    }
+
+    .custom-card-about-mirror .about-shape {
+      animation: liquid-1 6s linear infinite, about-parallax-mirror linear
+          both;
+      animation-timeline: auto, view();
+      animation-range: normal, cover;
+    }
+
+    .custom-card-about,
+    .custom-home-tile {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+}
+
+@keyframes about-parallax {
+  from {
+    transform: translateY(-8rem) rotate(-10deg) scale(0.8);
+  }
+
+  to {
+    transform: translateY(8rem) rotate(10deg) scale(1.25);
+  }
+}
+
+@keyframes about-parallax-mirror {
+  from {
+    transform: translateY(-8rem) rotate(10deg) scale(0.8);
+  }
+
+  to {
+    transform: translateY(8rem) rotate(-10deg) scale(1.25);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .liquid-shape-1 {
   position: absolute;
   z-index: 0;
@@ -115,6 +233,10 @@
   .custom-home-motto {
     font-size: 5rem;
   }
+
+  .about-title {
+    font-size: 2.2rem;
+  }
 }
 
 /* MID SCREENS: */
@@ -126,6 +248,14 @@
   .custom-home-motto {
     font-size: 3.5rem;
   }
+
+  .custom-card-about {
+    padding: 2.25rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
 }
 
 /* SMALL SCREENS: */
@@ -136,5 +266,25 @@
 
   .custom-home-motto {
     font-size: 1.6rem;
+  }
+
+  .custom-card-about {
+    padding: 1.75rem;
+  }
+
+  .about-shape {
+    top: -25%;
+    right: -25%;
+    width: 80%;
+    height: 150%;
+  }
+
+  .custom-card-about-mirror .about-shape {
+    right: auto;
+    left: -25%;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
   }
 }
