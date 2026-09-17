@@ -138,13 +138,6 @@
       animation-timeline: auto, view();
       animation-range: normal, cover;
     }
-
-    .custom-card-about,
-    .custom-home-tile {
-      animation: reveal-up linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 40%;
-    }
   }
 }
 
@@ -165,18 +158,6 @@
 
   to {
     transform: translateY(8rem) rotate(-10deg) scale(1.25);
-  }
-}
-
-@keyframes reveal-up {
-  /* No opacity change here: these cards sit in front of the page-spine-divider,
-     and fading their opacity would let it show through while mid-animation. */
-  from {
-    transform: translateY(3rem);
-  }
-
-  to {
-    transform: translateY(0);
   }
 }
 

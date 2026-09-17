@@ -2,13 +2,13 @@
   @for (section of sections; track section.heading) {
     <div class="timeline-item-experience">
       <div class="divider-card"></div>
-      <div class="experience-card-title">
+      <div class="experience-card-title scroll-reveal">
         <div class="custom-card-primary px-4 py-2">{{ section.heading }}</div>
       </div>
     </div>
     @for (item of section.items; track item.company) {
       <div class="timeline-item-experience">
-        <div class="left-part">
+        <div class="left-part scroll-reveal">
           <p class="item-title">{{ item.year }}</p>
           <p>
             <a
@@ -28,7 +28,7 @@
           </p>
         </div>
         <div class="divider"></div>
-        <div class="right-part">
+        <div class="right-part scroll-reveal">
           <p class="item-title">{{ item.role }}</p>
           <p class="text-inside-description">{{ item.description }}</p>
           @if (item.bullets) {
@@ -45,7 +45,7 @@
 
   <div class="container-fluid px-4 pb-4">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 scroll-reveal">
         <div
           class="custom-card-primary custom-subtitle-1 text-center px-4 py-2"
         >
@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 scroll-reveal">
         <div
           class="custom-card-primary custom-subtitle-1 text-center px-4 py-2"
         >
