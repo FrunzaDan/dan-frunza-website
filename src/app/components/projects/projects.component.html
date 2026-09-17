@@ -1,6 +1,12 @@
 <div class="content-container">
-  @for (project of projects; track project.name; let first = $first, last = $last) {
-    <div [class]="first ? 'timeline-item-projects-top' : 'timeline-item-projects'">
+  @for (
+    project of projects;
+    track project.name;
+    let first = $first, last = $last
+  ) {
+    <div
+      [class]="first ? 'timeline-item-projects-top' : 'timeline-item-projects'"
+    >
       <div class="left-part">
         <p class="item-title">{{ project.tech }}</p>
       </div>
@@ -9,7 +15,11 @@
         <p class="item-title">{{ project.name }}:</p>
       </div>
     </div>
-    <div [class]="last ? 'timeline-item-projects-bottom' : 'timeline-item-projects'">
+    <div
+      [class]="
+        last ? 'timeline-item-projects-bottom' : 'timeline-item-projects'
+      "
+    >
       <div class="divider-card"></div>
       <div class="projects-card-container">
         <div class="custom-card-primary w-100 p-2">
@@ -55,7 +65,7 @@
         <div
           class="custom-card-primary custom-subtitle-1 text-center px-4 py-2"
         >
-          Technical Skills
+          Tech Skills
         </div>
       </div>
       <div class="col-sm-6">
