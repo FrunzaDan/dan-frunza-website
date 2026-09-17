@@ -169,13 +169,13 @@
 }
 
 @keyframes reveal-up {
+  /* No opacity change here: these cards sit in front of the page-spine-divider,
+     and fading their opacity would let it show through while mid-animation. */
   from {
-    opacity: 0;
     transform: translateY(3rem);
   }
 
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }

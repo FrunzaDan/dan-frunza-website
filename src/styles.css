@@ -51,7 +51,17 @@ a:active {
 }
 
 .content-container {
-  padding: 0 4rem;
+  /* Establishes its own stacking context (via z-index: 0, not auto) so
+     .page-spine-divider's negative z-index is scoped locally and stays
+     behind this page's own content, rather than escaping to the document
+     root where it would end up behind the body background entirely. */
+  position: relative;
+  z-index: 0;
+  /* Exposed as a custom property (rather than baked into the padding
+     shorthand) so .page-spine-divider's left offset can be computed
+     against the same inset at every breakpoint below. */
+  --cc-pad: 4rem;
+  padding: 0 var(--cc-pad);
 }
 
 .no-margin {
@@ -285,6 +295,26 @@ iframe:focus {
   animation: pulseAnimation 1.6s infinite;
 }
 
+.page-spine-divider {
+  /* .divider/.divider-card on the experience/projects pages sit at left:33%
+     of .timeline-item-experience, which has no horizontal padding of its
+     own, so their 33% is relative to content-container's inner content
+     width, offset by content-container's own padding. This element instead
+     sits directly inside content-container, where percentages resolve
+     against the full padding box, so the same formula is reproduced with
+     calc() to land on the exact same pixel at every breakpoint. */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--cc-pad) + (100% - 2 * var(--cc-pad)) * 0.33);
+  width: 2px;
+  padding: 0;
+  margin: 0;
+  background-color: var(--main-dark-color);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .experience-card-title {
   position: relative;
   font-size: 6rem;
@@ -322,7 +352,7 @@ iframe:focus {
   }
 
   .content-container {
-    padding: 0 2rem;
+    --cc-pad: 2rem;
   }
 }
 
@@ -342,7 +372,7 @@ iframe:focus {
   }
 
   .content-container {
-    padding: 0 1rem;
+    --cc-pad: 1rem;
   }
 
   .projects-card-container {
@@ -353,7 +383,7 @@ iframe:focus {
 /* VERY SMALL SCREENS: */
 @media only screen and (max-width: 576px) {
   .content-container {
-    padding: 0;
+    --cc-pad: 0rem;
   }
 
   .item-company {
