@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface Project {
   readonly tech: string;
@@ -7,18 +7,31 @@ interface Project {
 }
 
 @Component({
-    selector: 'app-projects',
-    imports: [],
-    templateUrl: './projects.component.html',
-    styleUrl: './projects.component.css'
+  selector: 'app-projects',
+  imports: [],
+  templateUrl: './projects.component.html',
+  styleUrl: './projects.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent {
   protected readonly projects: readonly Project[] = [
     { tech: 'Angular', name: 'Imalo Education', description: 'description' },
     { tech: 'Angular', name: 'Misam Sibiu', description: 'description' },
     { tech: 'Angular', name: 'CRBRVS', description: 'description' },
-    { tech: 'Python', name: 'Tool-Chip Contact Length', description: 'description' },
-    { tech: 'Angular, .NET', name: 'Customer Management System', description: 'description' },
-    { tech: 'Angular', name: 'And of course, this website', description: 'description' },
+    {
+      tech: 'Python',
+      name: 'Tool-Chip Contact Length',
+      description: 'description',
+    },
+    {
+      tech: 'Angular, .NET',
+      name: 'Customer Management System',
+      description: 'description',
+    },
+    {
+      tech: 'Angular',
+      name: 'And of course, this website',
+      description: 'description',
+    },
   ];
 }

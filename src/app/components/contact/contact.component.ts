@@ -1,12 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'app-contact',
-    imports: [ReactiveFormsModule],
-    templateUrl: './contact.component.html',
-    styleUrl: './contact.component.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-contact',
+  imports: [ReactiveFormsModule],
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
   private readonly formBuilder = inject(FormBuilder);
@@ -18,10 +23,10 @@ export class ContactComponent {
     message: ['', [Validators.required, Validators.minLength(10)]],
   });
 
-  protected submitted = false;
+  protected readonly submitted = signal(false);
 
   protected onSubmit(): void {
-    this.submitted = true;
+    this.submitted.set(true);
 
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();

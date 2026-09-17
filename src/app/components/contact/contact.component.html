@@ -3,7 +3,9 @@
   <div class="container-fluid py-4">
     <div class="row py-2">
       <div class="col-sm-6 py-2">
-        <div class="custom-card-primary w-100 p-2 custom-card-contact scroll-reveal">
+        <div
+          class="custom-card-primary w-100 p-2 custom-card-contact scroll-reveal"
+        >
           <p class="contact-card-title">Contact Me</p>
           <p class="text-inside-description contact-card-subtitle">
             Have a project in mind or just want to say hi? Fill in the form
@@ -28,12 +30,12 @@
                 class="form-control"
                 [class.is-invalid]="
                   contactForm.controls.name.invalid &&
-                  (contactForm.controls.name.touched || submitted)
+                  (contactForm.controls.name.touched || submitted())
                 "
               />
               @if (
                 contactForm.controls.name.invalid &&
-                (contactForm.controls.name.touched || submitted)
+                (contactForm.controls.name.touched || submitted())
               ) {
                 <p class="contact-invalid-feedback">
                   @if (contactForm.controls.name.hasError('required')) {
@@ -57,12 +59,12 @@
                 class="form-control"
                 [class.is-invalid]="
                   contactForm.controls.email.invalid &&
-                  (contactForm.controls.email.touched || submitted)
+                  (contactForm.controls.email.touched || submitted())
                 "
               />
               @if (
                 contactForm.controls.email.invalid &&
-                (contactForm.controls.email.touched || submitted)
+                (contactForm.controls.email.touched || submitted())
               ) {
                 <p class="contact-invalid-feedback">
                   @if (contactForm.controls.email.hasError('required')) {
@@ -76,7 +78,7 @@
 
             <div class="contact-form-field">
               <label for="contact-phone" class="contact-form-label">
-                YourPhone Number
+                Your Phone Number
                 <span class="contact-optional-marker">(optional)</span>
               </label>
               <input
@@ -87,12 +89,12 @@
                 class="form-control"
                 [class.is-invalid]="
                   contactForm.controls.phone.invalid &&
-                  (contactForm.controls.phone.touched || submitted)
+                  (contactForm.controls.phone.touched || submitted())
                 "
               />
               @if (
                 contactForm.controls.phone.invalid &&
-                (contactForm.controls.phone.touched || submitted)
+                (contactForm.controls.phone.touched || submitted())
               ) {
                 <p class="contact-invalid-feedback">
                   Please enter a valid phone number.
@@ -111,12 +113,12 @@
                 class="form-control"
                 [class.is-invalid]="
                   contactForm.controls.message.invalid &&
-                  (contactForm.controls.message.touched || submitted)
+                  (contactForm.controls.message.touched || submitted())
                 "
               ></textarea>
               @if (
                 contactForm.controls.message.invalid &&
-                (contactForm.controls.message.touched || submitted)
+                (contactForm.controls.message.touched || submitted())
               ) {
                 <p class="contact-invalid-feedback">
                   @if (contactForm.controls.message.hasError('required')) {
@@ -134,7 +136,7 @@
               Send Message
             </button>
 
-            @if (submitted && contactForm.valid) {
+            @if (submitted() && contactForm.valid) {
               <p class="contact-success-note">
                 Thanks! Sending isn't wired up yet, but your message was
                 validated successfully.
@@ -145,7 +147,9 @@
       </div>
 
       <div class="col-sm-6 py-2">
-        <div class="custom-card-third w-100 p-2 custom-card-contact scroll-reveal">
+        <div
+          class="custom-card-third w-100 p-2 custom-card-contact scroll-reveal"
+        >
           <p class="contact-card-title">Get in Touch</p>
           <p class="text-inside-description contact-card-subtitle">
             Prefer a different channel? Reach me directly here.

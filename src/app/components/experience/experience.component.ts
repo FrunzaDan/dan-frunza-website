@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface ExperienceItem {
   readonly year: string;
@@ -18,10 +18,11 @@ interface ExperienceSection {
 }
 
 @Component({
-    selector: 'app-experience',
-    imports: [],
-    templateUrl: './experience.component.html',
-    styleUrl: './experience.component.css'
+  selector: 'app-experience',
+  imports: [],
+  templateUrl: './experience.component.html',
+  styleUrl: './experience.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExperienceComponent {
   protected readonly sections: readonly ExperienceSection[] = [
@@ -102,13 +103,13 @@ export class ExperienceComponent {
         {
           year: '2022',
           company: 'Lucian Blaga University of Sibiu',
-          companyUrl: 'https://www.bielomatik.com/',
+          companyUrl: 'https://www.ulbsibiu.ro/en/',
           companyAriaLabel: 'ULBS',
           companyLogo: '/assets/company_logos/ULBS_logo.png',
           companyLogoAlt: 'ULBS Logo',
           role: "Master's Degree",
           description:
-            'This internship at Bielomatik had a positive impact on my design abilities, which reflected themselves later as better frontend skills.',
+            "Master's degree focused on advanced computer science topics, including image processing, data mining and artificial intelligence.",
           bullets: [
             'Digital image processing',
             'Data Mining',
@@ -119,13 +120,13 @@ export class ExperienceComponent {
         {
           year: '2020',
           company: 'Technical University of Cluj-Napoca',
-          companyUrl: 'https://www.bielomatik.com/',
-          companyAriaLabel: 'Bielomatik',
+          companyUrl: 'https://www.utcluj.ro/en/',
+          companyAriaLabel: 'UTCN',
           companyLogo: '/assets/company_logos/UTCN_logo.png',
           companyLogoAlt: 'UTCN Logo',
           role: "Bachelor's Degree",
           description:
-            'This internship at Bielomatik had a positive impact on my design abilities, which reflected themselves later as better frontend skills.',
+            "Bachelor's degree combining industrial programming with hardware-focused development and CAD scripting.",
           bullets: [
             'Industry focused databases',
             'Industrial programming',
