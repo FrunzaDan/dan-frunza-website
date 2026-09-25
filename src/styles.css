@@ -407,7 +407,7 @@ iframe:focus {
 
 @media (pointer: fine) {
   .hover-item:hover {
-    transform: scale(1.1);
+    transform: scale(1.04);
   }
 
   .hover-text:hover {
@@ -416,7 +416,7 @@ iframe:focus {
   }
 
   .hover-card:hover {
-    transform: scale(1.04);
+    transform: scale(1.02);
   }
 
   .hover-logo:hover {
@@ -447,7 +447,7 @@ iframe:focus {
   }
 
   .hover-card:active {
-    transform: scale(1.1);
+    transform: scale(1.04);
   }
 
   .hover-logo:active {

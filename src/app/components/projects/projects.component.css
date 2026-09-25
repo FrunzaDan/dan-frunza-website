@@ -1,0 +1,63 @@
+.project-image-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  border: 0.4rem solid var(--main-red-color);
+}
+
+.project-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.project-description {
+  min-height: 3.2rem;
+}
+
+.btn-project {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.btn-project-icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.btn-project-icon svg {
+  display: block;
+}
+
+/* Bootstrap's .btn:disabled already dims (opacity) and blocks pointer
+   events; this badge is the only extra treatment the disabled Demo
+   button needs to read as "not available yet" rather than broken. */
+.btn-project-badge {
+  position: absolute;
+  top: -0.8rem;
+  right: -0.6rem;
+  background: var(--main-red-color);
+  color: var(--main-light-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 1rem;
+  white-space: nowrap;
+}
+
+/* SMALL SCREENS: */
+@media only screen and (max-width: 576px) {
+  .btn-project-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
