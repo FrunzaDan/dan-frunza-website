@@ -1,0 +1,10 @@
+<a class="skip-link" href="#main-content" (click)="skipToMainContent($event)"
+  >Skip to main content</a
+>
+<header>
+  <app-navbar></app-navbar>
+</header>
+<main id="main-content" tabindex="-1">
+  <router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>

@@ -1,4 +1,5 @@
 .custom-card-contact {
+  position: relative;
   padding: 3rem;
   height: 100%;
 }
@@ -71,10 +72,25 @@
   cursor: pointer;
 }
 
-.contact-success-note {
-  margin-top: 1rem;
-  font-size: 1.3rem;
-  color: var(--main-red-color);
+/* ---------- Sent-message popup ---------- */
+
+.send-email-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 80%;
+  padding: 2rem;
+  border: 0.4rem solid var(--main-red-color);
+  border-radius: 2rem;
+  background: var(--main-light-color);
+  box-shadow: 0 0 1rem rgba(var(--main-dark-color-alpha), 0.25);
+  text-align: center;
+}
+
+.send-email-modal:focus {
+  outline: none;
 }
 
 /* ---------- Info card (right card) ---------- */

@@ -46,6 +46,49 @@ a:active {
   color: inherit;
 }
 
+/* Headings take their look from their classes, so they read exactly like the
+   paragraphs they replaced; the tag only gives the page its outline. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  color: var(--main-dark-color);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: 0;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--main-dark-color);
+  color: var(--main-light-color);
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus-visible {
+  top: 0;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--main-red-color);
+  outline-offset: 2px;
+}
+
 .content-container {
   /* Establishes its own stacking context (via z-index: 0, not auto) so
      .page-spine-divider's negative z-index is scoped locally and stays
@@ -174,6 +217,7 @@ iframe:focus {
 .btn-primary {
   border: 0.2rem var(--main-dark-color) solid;
   background-color: var(--main-dark-color);
+  color: var(--main-light-color);
   padding: 0.4rem;
   width: 100%;
   border-radius: 1rem;

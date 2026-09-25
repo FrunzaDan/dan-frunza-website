@@ -1,4 +1,5 @@
 <div class="content-container">
+  <h1 class="visually-hidden">Projects</h1>
   @for (
     project of projects;
     track project.name;
@@ -12,7 +13,7 @@
       </div>
       <div [class]="first ? 'divider-top' : 'divider'"></div>
       <div class="right-part scroll-reveal">
-        <p class="item-title">{{ project.name }}:</p>
+        <h2 class="item-title no-margin">{{ project.name }}:</h2>
       </div>
     </div>
     <div
@@ -29,7 +30,8 @@
                 <div class="project-image-frame">
                   <img
                     [src]="project.img1"
-                    [alt]="project.name"
+                    [alt]="'Screenshot of ' + project.name"
+                    loading="lazy"
                     class="project-image"
                   />
                 </div>
@@ -38,7 +40,8 @@
                 <div class="project-image-frame">
                   <img
                     [src]="project.img2"
-                    [alt]="project.name"
+                    [alt]="'Second screenshot of ' + project.name"
+                    loading="lazy"
                     class="project-image"
                   />
                 </div>
@@ -53,13 +56,11 @@
             </div>
             <div class="row g-2 mt-2">
               <div class="col-sm-6">
-                @if (project.demoDisabled) {
+                @if (!project.demoUrl) {
                   <button
                     type="button"
                     class="btn btn-lg btn-primary btn-project"
                     disabled
-                    aria-disabled="true"
-                    title="No public demo available"
                   >
                     <span class="btn-project-icon" aria-hidden="true">
                       <svg
@@ -87,13 +88,15 @@
                     </span>
                     Demo
                     <span class="btn-project-badge">Local only</span>
+                    <span class="visually-hidden"
+                      >: no public demo of {{ project.name }}</span
+                    >
                   </button>
                 } @else {
                   <a
                     [href]="project.demoUrl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    [attr.aria-label]="'Open live demo of ' + project.name"
                     class="btn btn-lg btn-primary btn-project"
                   >
                     <span class="btn-project-icon" aria-hidden="true">
@@ -127,7 +130,9 @@
                         />
                       </svg>
                     </span>
-                    Demo
+                    Demo<span class="visually-hidden">
+                      of {{ project.name }} (opens in a new tab)</span
+                    >
                   </a>
                 }
               </div>
@@ -136,7 +141,6 @@
                   [href]="project.codeUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  [attr.aria-label]="'View source code of ' + project.name"
                   class="btn btn-lg btn-primary btn-project"
                 >
                   <span class="btn-project-icon" aria-hidden="true">
@@ -156,7 +160,9 @@
                       />
                     </svg>
                   </span>
-                  Code
+                  Code<span class="visually-hidden">
+                    of {{ project.name }} (opens in a new tab)</span
+                  >
                 </a>
               </div>
             </div>

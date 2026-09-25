@@ -1,18 +1,23 @@
 import {
   ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
+import {
+  provideClientHydration,
+  withEventReplay,
+  withNoIncrementalHydration,
+} from '@angular/platform-browser';
 import {
   provideRouter,
   withInMemoryScrolling,
   withViewTransitions,
 } from '@angular/router';
-
 import { routes } from './app.routes';
-import { provideClientHydration, withNoIncrementalHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideRouter(
       routes,
       withInMemoryScrolling({
@@ -21,7 +26,7 @@ export const appConfig: ApplicationConfig = {
       }),
       withViewTransitions(),
     ),
-    provideClientHydration(withNoIncrementalHydration()),
+    provideClientHydration(withEventReplay(), withNoIncrementalHydration()),
     provideZonelessChangeDetection(),
   ],
 };

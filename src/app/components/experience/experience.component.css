@@ -1,3 +1,8 @@
+.skills-info {
+  list-style: none;
+  margin: 0;
+}
+
 .skill-value {
   font-size: 1rem;
   line-height: 1.1em;
@@ -58,54 +63,6 @@
 
 .custom-card-primary:hover {
   transform: rotateY(15deg); /* Even more tilt on hover */
-}
-
-.skill-percentage.skill-1 {
-  width: 85%;
-}
-
-.skill-percentage.skill-2 {
-  width: 70%;
-}
-
-.skill-percentage.skill-3 {
-  width: 80%;
-}
-
-.skill-percentage.skill-4 {
-  width: 90%;
-}
-
-.skill-percentage.skill-5 {
-  width: 80%;
-}
-
-.skill-percentage.skill-6 {
-  width: 70%;
-}
-
-.skill-percentage.skill-7 {
-  width: 80%;
-}
-
-.skill-percentage.skill-8 {
-  width: 95%;
-}
-
-.skill-percentage.skill-9 {
-  width: 80%;
-}
-
-.skill-percentage.skill-10 {
-  width: 85%;
-}
-
-.skill-percentage.skill-11 {
-  width: 90%;
-}
-
-.skill-percentage.skill-12 {
-  width: 85%;
 }
 
 .skill-name {

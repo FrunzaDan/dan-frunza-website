@@ -1,152 +1,77 @@
 <div class="content-container">
+  <h1 class="visually-hidden">Experience and Education</h1>
   @for (section of sections; track section.heading) {
-    <div class="timeline-item-experience">
-      <div class="divider-card"></div>
-      <div class="experience-card-title scroll-reveal">
-        <div class="custom-card-primary px-4 py-2">{{ section.heading }}</div>
-      </div>
-    </div>
-    @for (item of section.items; track item.company) {
+    <section [attr.aria-label]="section.heading">
       <div class="timeline-item-experience">
-        <div class="left-part scroll-reveal">
-          <p class="item-title">{{ item.year }}</p>
-          <p>
-            <a
-              [href]="item.companyUrl"
-              target="_blank"
-              [attr.aria-label]="item.companyAriaLabel"
-              class="item-company hover-text"
-              >{{ item.company }}</a
-            >
-          </p>
-          <p>
-            <img
-              [src]="item.companyLogo"
-              class="company-logo"
-              [alt]="item.companyLogoAlt"
-            />
-          </p>
-        </div>
-        <div class="divider"></div>
-        <div class="right-part scroll-reveal">
-          <p class="item-title">{{ item.role }}</p>
-          <p class="text-inside-description">{{ item.description }}</p>
-          @if (item.bullets) {
-            <ul class="text-inside-description">
-              @for (bullet of item.bullets; track bullet) {
-                <li>{{ bullet }}</li>
-              }
-            </ul>
-          }
+        <div class="divider-card"></div>
+        <div class="experience-card-title scroll-reveal">
+          <h2 class="custom-card-primary px-4 py-2 no-margin">
+            {{ section.heading }}
+          </h2>
         </div>
       </div>
-    }
+      @for (item of section.items; track item.company) {
+        <div class="timeline-item-experience">
+          <div class="left-part scroll-reveal">
+            <p class="item-title">{{ item.year }}</p>
+            <p>
+              <a
+                [href]="item.companyUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="item-company hover-text"
+                >{{ item.company
+                }}<span class="visually-hidden"> (opens in a new tab)</span></a
+              >
+            </p>
+            <p>
+              <img [src]="item.companyLogo" class="company-logo" alt="" />
+            </p>
+          </div>
+          <div class="divider"></div>
+          <div class="right-part scroll-reveal">
+            <h3 class="item-title">{{ item.role }}</h3>
+            <p class="text-inside-description">{{ item.description }}</p>
+            @if (item.bullets) {
+              <ul class="text-inside-description">
+                @for (bullet of item.bullets; track bullet) {
+                  <li>{{ bullet }}</li>
+                }
+              </ul>
+            }
+          </div>
+        </div>
+      }
+    </section>
   }
 
   <div class="container-fluid px-4 pb-4">
     <div class="row">
-      <div class="col-sm-6 scroll-reveal">
-        <div
-          class="custom-card-primary custom-subtitle-1 text-center px-4 py-2"
-        >
-          Tech Skills
-        </div>
-        <div class="skills-info skills-second-style p-2 pt-4">
-          <div class="clearfix">
-            <div class="skill-name">Dot Net, C#</div>
-            <div class="skill-value">85%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-1"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Blazor, Razor</div>
-            <div class="skill-value">70%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-2"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Databases</div>
-            <div class="skill-value">80%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-3"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Microservices & Web APIs</div>
-            <div class="skill-value">90%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-4"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Html, CSS, Javascript</div>
-            <div class="skill-value">80%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-5"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Angular</div>
-            <div class="skill-value">70%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-6"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 scroll-reveal">
-        <div
-          class="custom-card-primary custom-subtitle-1 text-center px-4 py-2"
-        >
-          Soft Skills
-        </div>
-        <div class="skills-info skills-second-style p-2 pt-4">
-          <div class="clearfix">
-            <div class="skill-name">Time management</div>
-            <div class="skill-value">80%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-7"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Communication</div>
-            <div class="skill-value">95%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-8"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Adaptability</div>
-            <div class="skill-value">80%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-9"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Problem-solving</div>
-            <div class="skill-value">85%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-10"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Team work</div>
-            <div class="skill-value">90%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-11"></div>
-          </div>
-          <div class="clearfix">
-            <div class="skill-name">Creativity</div>
-            <div class="skill-value">85%</div>
-          </div>
-          <div class="skill-container skill-hover-item">
-            <div class="skill-percentage skill-12"></div>
-          </div>
-        </div>
-      </div>
+      @for (group of skillGroups; track group.heading) {
+        <section class="col-sm-6 scroll-reveal">
+          <h2
+            class="custom-card-primary custom-subtitle-1 text-center px-4 py-2 no-margin"
+          >
+            {{ group.heading }}
+          </h2>
+          <ul class="skills-info skills-second-style p-2 pt-4">
+            @for (skill of group.skills; track skill.name) {
+              <li>
+                <div class="clearfix">
+                  <div class="skill-name">{{ skill.name }}</div>
+                  <div class="skill-value">{{ skill.level }}%</div>
+                </div>
+                <div class="skill-container skill-hover-item" aria-hidden="true">
+                  <div
+                    class="skill-percentage"
+                    [style.width.%]="skill.level"
+                  ></div>
+                </div>
+              </li>
+            }
+          </ul>
+        </section>
+      }
     </div>
   </div>
 </div>

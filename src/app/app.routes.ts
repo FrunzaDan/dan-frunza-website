@@ -1,40 +1,47 @@
 import { Routes } from '@angular/router';
-import { ContactComponent } from './components/contact/contact.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { ExperienceComponent } from './components/experience/experience.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    title: 'Home',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    title: 'Welcome',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./components/home/home.component').then((m) => m.HomeComponent),
+    title: 'Dan Frunza - .NET & Angular Developer',
   },
   {
     path: 'projects',
-    component: ProjectsComponent,
-    title: 'Projects',
+    loadComponent: () =>
+      import('./components/projects/projects.component').then(
+        (m) => m.ProjectsComponent,
+      ),
+    title: 'Projects - Dan Frunza',
   },
   {
     path: 'experience',
-    component: ExperienceComponent,
-    title: 'Experience',
+    loadComponent: () =>
+      import('./components/experience/experience.component').then(
+        (m) => m.ExperienceComponent,
+      ),
+    title: 'Experience - Dan Frunza',
   },
   {
     path: 'contact',
-    component: ContactComponent,
-    title: 'Contact',
+    loadComponent: () =>
+      import('./components/contact/contact.component').then(
+        (m) => m.ContactComponent,
+      ),
+    title: 'Contact - Dan Frunza',
+  },
+  {
+    path: '404',
+    loadComponent: () =>
+      import('./components/page-not-found/page-not-found.component').then(
+        (m) => m.PageNotFoundComponent,
+      ),
+    title: '404 - Dan Frunza',
   },
   {
     path: '**',
-    pathMatch: 'full',
-    component: PageNotFoundComponent,
-    title: '404',
+    redirectTo: '404',
   },
 ];
