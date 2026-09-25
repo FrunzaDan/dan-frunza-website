@@ -10,6 +10,13 @@
   box-shadow: none;
 }
 
+/* Bootstrap's .navbar-toggler:focus removes the outline, which would also
+   hide the site's keyboard focus ring. */
+.navbar-toggler:focus-visible {
+  outline: 3px solid var(--main-red-color);
+  outline-offset: 2px;
+}
+
 @media (max-width: 575.98px) {
   .navbar-toggler {
     display: block;
@@ -20,10 +27,10 @@
 .navbar-toggler span {
   display: block;
   background-color: var(--main-red-color);
-  height: 3px;
-  width: 25px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  height: 4px;
+  width: 32px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   position: relative;
   left: 0;
   opacity: 1;

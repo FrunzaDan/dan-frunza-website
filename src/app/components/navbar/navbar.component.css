@@ -1,5 +1,8 @@
 .navbar-custom-style {
     position: relative;
+    /* Keeps the navbar, and the phone menu that opens under it, above the
+       page content (the home logo reaches up behind the hamburger button). */
+    z-index: 10;
 }
 
 .navbar {
@@ -123,9 +126,34 @@
     }
 }
 
-/* On phones the links are hidden until the hamburger button opens them. */
+/* On phones the menu slides down when the hamburger button opens it and back
+   up when it closes. visibility waits for the slide to finish before hiding
+   the links, so they also leave the tab order once the menu is closed. */
 @media only screen and (max-width: 575.98px) {
-    .navbar-collapse:not(.show) {
-        display: none;
+    .navbar-collapse {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition:
+            max-height 0.5s ease,
+            opacity 0.5s ease,
+            transform 0.5s ease,
+            visibility 0s linear 0.5s;
+    }
+
+    .navbar-collapse.show {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition-delay: 0s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-collapse {
+        transition: none;
     }
 }

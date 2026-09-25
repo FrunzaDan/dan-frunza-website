@@ -18,7 +18,9 @@
             <div class="contact-form-field">
               <label for="contact-name" class="contact-form-label">
                 Your Name
-                <span class="contact-required-marker" aria-hidden="true">*</span>
+                <span class="contact-required-marker" aria-hidden="true"
+                  >*</span
+                >
               </label>
               <input
                 id="contact-name"
@@ -28,7 +30,9 @@
                 [formField]="contactForm.name"
                 [class.is-invalid]="nameError"
                 [attr.aria-invalid]="nameError"
-                [attr.aria-describedby]="nameError ? 'contact-name-error' : null"
+                [attr.aria-describedby]="
+                  nameError ? 'contact-name-error' : null
+                "
               />
               @if (nameError) {
                 <p class="contact-invalid-feedback" id="contact-name-error">
@@ -42,7 +46,9 @@
             <div class="contact-form-field">
               <label for="contact-email" class="contact-form-label">
                 Your Email
-                <span class="contact-required-marker" aria-hidden="true">*</span>
+                <span class="contact-required-marker" aria-hidden="true"
+                  >*</span
+                >
               </label>
               <input
                 id="contact-email"
@@ -94,7 +100,9 @@
             <div class="contact-form-field">
               <label for="contact-message" class="contact-form-label">
                 Message
-                <span class="contact-required-marker" aria-hidden="true">*</span>
+                <span class="contact-required-marker" aria-hidden="true"
+                  >*</span
+                >
               </label>
               <textarea
                 id="contact-message"
@@ -218,8 +226,8 @@
                   />
                 </svg>
               </span>
-              <a href="tel:+12345678900" class="contact-info-link hover-text"
-                >+1 234 567 8900</a
+              <a href="tel:+40773851161" class="contact-info-link hover-text"
+                >+40 773 851 161</a
               >
             </li>
 
