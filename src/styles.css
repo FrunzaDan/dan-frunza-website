@@ -167,6 +167,12 @@ iframe:focus {
   transform-origin: 50% 50%;
 }
 
+.hover-text-nav {
+  position: relative;
+  transition: all 0.2s;
+  transform-origin: 50% 50%;
+}
+
 .hover-card {
   position: relative;
   transition: all 0.2s;
@@ -214,7 +220,23 @@ iframe:focus {
   vertical-align: top;
 }
 
+/* One look for every primary button, whether it is a <button> or a link
+   styled as one. Bootstrap's .btn variables point at the site colours so its
+   focus, active and disabled states no longer fall back to Bootstrap blue. */
 .btn-primary {
+  --bs-btn-color: var(--main-light-color);
+  --bs-btn-bg: var(--main-dark-color);
+  --bs-btn-border-color: var(--main-dark-color);
+  --bs-btn-hover-color: var(--main-red-color);
+  --bs-btn-hover-bg: var(--main-light-color);
+  --bs-btn-hover-border-color: var(--main-red-color);
+  --bs-btn-focus-shadow-rgb: var(--main-red-color-alpha);
+  --bs-btn-active-color: var(--main-light-color);
+  --bs-btn-active-bg: var(--main-red-color);
+  --bs-btn-active-border-color: var(--main-light-color);
+  --bs-btn-disabled-color: var(--main-light-color);
+  --bs-btn-disabled-bg: var(--main-dark-color);
+  --bs-btn-disabled-border-color: var(--main-dark-color);
   border: 0.2rem var(--main-dark-color) solid;
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
@@ -222,6 +244,31 @@ iframe:focus {
   width: 100%;
   border-radius: 1rem;
   font-size: 2rem;
+  cursor: pointer;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Links styled as buttons: a:link's "color: inherit" would otherwise win and
+   paint the label dark on the dark button. */
+.btn-primary:link,
+.btn-primary:visited {
+  color: var(--main-light-color);
+}
+
+/* The global * rule gives every element the dark colour; inside a button the
+   icon and label must follow the button's own colour instead. */
+.btn-primary * {
+  color: inherit;
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  pointer-events: none;
 }
 
 .img-primary {
@@ -456,7 +503,12 @@ iframe:focus {
 
   .hover-text:hover {
     transform: scale(1.04);
-    filter: drop-shadow(4px 4px var(--main-red-color));
+    filter: drop-shadow(2px 1px var(--main-red-color));
+  }
+
+  .hover-text-nav:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(4px 2px var(--main-red-color));
   }
 
   .hover-card:hover {
@@ -471,12 +523,16 @@ iframe:focus {
     background-color: var(--main-light-color) !important;
     border-color: var(--main-red-color) !important;
     color: var(--main-red-color) !important;
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 var(--main-red-color);
   }
 
   .btn-primary:active {
     background-color: var(--main-red-color) !important;
     border-color: var(--main-light-color) !important;
     color: var(--main-light-color) !important;
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 var(--main-red-color);
   }
 }
 
@@ -486,6 +542,11 @@ iframe:focus {
   }
 
   .hover-text:active {
+    transform: scale(1.04);
+    filter: drop-shadow(4px 4px var(--main-red-color));
+  }
+
+  .hover-text-nav:active {
     transform: scale(1.04);
     filter: drop-shadow(4px 4px var(--main-red-color));
   }
@@ -502,5 +563,47 @@ iframe:focus {
     background-color: var(--main-light-color) !important;
     border-color: var(--main-red-color) !important;
     color: var(--main-red-color) !important;
+    transform: scale(0.97);
+  }
+}
+
+/* Page changes: the old page fades away and the new one rises into place.
+   The header gets its own snapshot so it stays still while the page moves. */
+header {
+  position: relative;
+  z-index: 10;
+  view-transition-name: site-header;
+}
+
+::view-transition-old(root) {
+  animation: page-out 0.18s ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: page-in 0.4s ease-out both;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .btn-primary {
+    transition: none;
   }
 }

@@ -127,14 +127,17 @@
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .about-shape {
-      animation: liquid-1 6s linear infinite, about-parallax linear both;
+      animation:
+        liquid-1 6s linear infinite,
+        about-parallax linear both;
       animation-timeline: auto, view();
       animation-range: normal, cover;
     }
 
     .custom-card-about-mirror .about-shape {
-      animation: liquid-1 6s linear infinite, about-parallax-mirror linear
-          both;
+      animation:
+        liquid-1 6s linear infinite,
+        about-parallax-mirror linear both;
       animation-timeline: auto, view();
       animation-range: normal, cover;
     }
@@ -267,5 +270,53 @@
 
   .about-title {
     font-size: 1.8rem;
+  }
+}
+
+/* ---------- Animations ---------- */
+
+.custom-home-tile-icon {
+  display: inline-flex;
+  align-self: flex-start;
+  transition:
+    color 0.2s,
+    filter 0.35s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* The icon lifts off the card and casts a red shadow behind it. */
+@media (pointer: fine) {
+  .custom-home-tile:hover .custom-home-tile-icon {
+    transform: translateY(-4px) rotate(-8deg) scale(1.1);
+    filter: drop-shadow(4px 4px 0 var(--main-red-color));
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-home-tile:active .custom-home-tile-icon {
+    filter: drop-shadow(4px 4px 0 var(--main-red-color));
+  }
+}
+
+/* The two hero cards rise in one after the other when the page opens, and
+   the motto follows a moment later. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-card {
+    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .hero-card-second {
+    animation-delay: 0.15s;
+  }
+
+  .custom-home-motto {
+    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s backwards;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem) scale(0.97);
   }
 }

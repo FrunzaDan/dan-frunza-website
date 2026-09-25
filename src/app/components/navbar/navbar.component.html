@@ -2,7 +2,7 @@
   class="navbar navbar-expand-sm navbar-custom-style"
   aria-label="Main navigation"
 >
-  <a routerLink="/" class="nav-link hover-text" (click)="closeMenu()">
+  <a routerLink="/" class="nav-link hover-text-nav" (click)="closeMenu()">
     <img
       id="navbarBrand"
       src="/assets/DanFrunzaLogo_Mini.svg"
@@ -27,7 +27,7 @@
             [routerLink]="link.path"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
-            class="nav-link hover-text"
+            class="nav-link hover-text-nav"
             (click)="closeMenu()"
             >{{ link.label }}</a
           >

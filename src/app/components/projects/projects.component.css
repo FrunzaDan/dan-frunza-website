@@ -61,3 +61,26 @@
     padding: 0.2rem 0.5rem;
   }
 }
+
+.btn-project-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* The button icons nudge when a button is used. */
+@media (pointer: fine) {
+  .btn-project:hover .btn-project-icon {
+    transform: translateX(3px) rotate(-10deg) scale(1.15);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .btn-project:active .btn-project-icon {
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-project-icon {
+    transition: none;
+  }
+}
