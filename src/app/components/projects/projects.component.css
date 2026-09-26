@@ -16,6 +16,10 @@
 
 .project-description {
   min-height: 3.2rem;
+  text-align: justify;
+  /* The global balance wrapping shortens lines unevenly, which fights justification. */
+  text-wrap: pretty;
+  hyphens: auto;
 }
 
 .btn-project {
