@@ -1,20 +1,21 @@
 # Dan Frunza Website
 
-My personal portfolio site as a .NET and Angular developer. It has an intro, a projects page with screenshots and write-ups, my work experience and education, and a contact form. Every page is prerendered at build time and served as static files from Firebase Hosting.
+This is my personal portfolio site as a .NET and Angular developer. The home page introduces who I am and how I work, and links to the other sections of the site. The projects page walks through nine of my projects with screenshots, tech tags, plain-language and technical write-ups, and links to the code. There's also a page for my work experience and education, and a contact form that sends email straight from the browser. Every page is prerendered at build time, so the site is plain static HTML on Firebase Hosting with no server behind it.
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-- **Projects page:** Nine projects, each with tech tags, a plain-language summary, technical notes, a code link, an optional demo link and a screenshot lightbox.
-- **Experience page:** Work history and education.
-- **Contact form:** Validated form that sends messages client-side through EmailJS, with no backend.
-- **Fully static output:** Every route, including the 404 page, is prerendered (`outputMode: "static"`), so Firebase Hosting serves plain HTML with no server.
-- **SEO:** Per-page titles, meta description, Open Graph/Twitter tags and canonical URLs, plus a web manifest and touch icons.
+- **Projects page:** Nine projects, each with tech tags, a short plain-language description and a more technical write-up, and for some of them key features and a typical use case. Each one links to its code, and to a live demo where there is one; projects without a demo show the button disabled.
+- **Screenshot lightbox:** Every project has two or four screenshots in a grid. Clicking one opens it full size in a lightbox, where you can move through that project's screenshots with the arrow buttons, the arrow keys or a swipe on touch screens.
+- **Experience page:** Work history and education, with company logos.
+- **Contact form:** A validated form sends messages through EmailJS straight from the browser, so the site needs no backend. It shows success and failure messages.
+- **Fully static output:** Every route, including the 404 page, is prerendered at build time (`outputMode: "static"`). Firebase Hosting serves plain HTML files, and unknown URLs get the prerendered 404 page with a real 404 status.
+- **SEO:** Each page has its own title, meta description, Open Graph/Twitter tags and canonical URL. A web manifest and touch icons are included for phones.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend:** Angular 22.2 (standalone components, signals, zoneless), TypeScript, plain CSS plus a vendored subset of Bootstrap's grid/utility CSS (`src/bootstrap-essentials.css`)
 - **Backend:** N/A
@@ -23,7 +24,7 @@ My personal portfolio site as a .NET and Angular developer. It has an intro, a p
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this project, ensure you have the following installed:
 
@@ -32,7 +33,7 @@ Before running this project, ensure you have the following installed:
 
 ---
 
-## ⚙️ Local Setup & Running
+## Local Setup & Running
 
 ### 1. Clone the repository
 
@@ -60,7 +61,7 @@ npm run build      # prerendered static build → dist/dan-frunza-website/browse
 
 ---
 
-## 🔌 API / App Usage
+## API / App Usage
 
 Routes: `/` (home), `/projects`, `/experience`, `/contact` and `/404`. Any other URL renders the 404 page.
 
@@ -73,6 +74,6 @@ firebase deploy
 
 ---
 
-## 📝 License & Notes
+## License & Notes
 
 Personal portfolio with no license file. Company logos in `public/assets/company_logos/` belong to their respective companies.
