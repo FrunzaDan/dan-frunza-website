@@ -126,15 +126,52 @@
   border-right: 0.15em solid var(--main-red-color);
   border-bottom: 0.15em solid var(--main-red-color);
   transform: rotate(-45deg);
-  transition: transform 0.2s ease;
+  transition: transform 0.4s ease;
 }
 
 .project-details[open] summary::before {
   transform: rotate(45deg);
 }
 
+/* The section slides open: the content box is a one-row grid whose row grows
+   from 0fr to 1fr, so the card grows with it rather than jumping. The
+   content-visibility transition keeps the text shown while it closes. */
+.project-details::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.4s ease,
+    content-visibility 0.4s allow-discrete;
+}
+
+.project-details[open]::details-content {
+  grid-template-rows: 1fr;
+}
+
 .project-details .project-description {
+  min-height: 0;
+  overflow: hidden;
+  margin: 0;
+  opacity: 0;
+  transition:
+    margin-top 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.project-details[open] .project-description {
   margin-top: 0.6rem;
+  opacity: 1;
+  transition:
+    margin-top 0.4s ease,
+    opacity 0.3s ease 0.1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-details::details-content,
+  .project-details .project-description,
+  .project-details summary::before {
+    transition: none;
+  }
 }
 
 .btn-project {
@@ -288,7 +325,9 @@
   background: var(--main-dark-color);
   color: var(--main-light-color);
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 /* The cross is drawn as two bars rather than the × character, whose position
@@ -330,8 +369,11 @@
   font-weight: 900;
   line-height: 1;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease,
-    border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .lightbox-prev {

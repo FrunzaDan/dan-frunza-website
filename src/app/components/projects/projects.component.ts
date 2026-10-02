@@ -26,7 +26,8 @@ interface Project {
   readonly demoUrl?: string;
   /** Screenshots shown in a two-column grid: two fill one row, four make a 2×2 grid. */
   readonly images:
-    readonly [string, string] | readonly [string, string, string, string];
+    | readonly [string, string]
+    | readonly [string, string, string, string];
 }
 
 /** How far a finger has to travel sideways before it counts as a swipe. */
@@ -47,7 +48,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'Imalo is a German-language afterschool program for children in Sibiu, Romania. Its website is where parents first meet it: what the program offers, the daily schedule, a photo gallery and a way to get in touch. Everything is available in both Romanian and German.',
       technical:
-        'Built with Angular using standalone components, zoneless change detection and Signals, prerendered with SSR for speed and SEO, and hosted on Firebase. The contact form sends emails straight from the browser through EmailJS, with no backend of its own.',
+        "Built with Angular 22 using standalone components, zoneless change detection and Signals, with every page prerendered through SSR for speed and SEO and hosted on Firebase. Each route is lazy-loaded, and page changes use the browser's View Transitions for a smooth feel. The Romanian/German switch is a small signal-based language service rather than a full i18n library, which suits a site with two languages. The gallery is a custom lightbox driven by the mouse or keyboard, animated with Angular's native enter and leave bindings instead of the animations package. The contact form sends emails straight from the browser through EmailJS, with no backend of its own. Unit tests run on Vitest and cover the language, SEO and email services, the form validation and the gallery navigation.",
       features: [
         {
           title: 'Two languages',
@@ -77,7 +78,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'The staff side of Imalo: a web app that keeps track of every child in the afterschool program. It records who picks each child up and when, which days they came, and what lunch and transport cost. Everything the team needs to know about a child is in one place.',
       technical:
-        'The Angular 22 frontend (SSR, zoneless, Signals) talks only over HTTP to an ASP.NET Core Web API on .NET 10, which reads and writes a SQL Server database with raw ADO.NET, no ORM. The schema is an SSDT project deployed with sqlpackage, and both the UI and the API are covered by unit tests.',
+        "The Angular 22 frontend (SSR, zoneless, Signals) talks only over HTTP to an ASP.NET Core Web API on .NET 10, so each of the three layers can be run and tested on its own. The API reads and writes a SQL Server database with raw ADO.NET and parameterized SQL, with no ORM. The schema is an SSDT project built and deployed with sqlpackage, and SQL Server runs in Docker on Azure SQL Edge, which also works on Apple Silicon. One script starts the database, deploys the schema and launches the API and the UI, and another builds everything and runs both test suites. API errors follow the RFC 9457 Problem Details standard, and CORS only allows the UI's own origin. The API is tested with xUnit and the UI with Vitest.",
       features: [
         {
           title: 'Dashboard',
@@ -107,7 +108,6 @@ export class ProjectsComponent implements OnInit {
       useCase:
         'When a child enrols, the staff add them to the app, set their pick-up times and tick off attendance each day. At the end of the month they see exactly what lunch and transport cost.',
       codeUrl: 'https://github.com/FrunzaDan/imalo-education-webapp',
-      demoUrl: 'https://imalo-education.web.app',
       images: [
         '/assets/images/projects/imalo-edu-wa-1.webp',
         '/assets/images/projects/imalo-edu-wa-2.webp',
@@ -121,7 +121,7 @@ export class ProjectsComponent implements OnInit {
       description:
         "The official website of the rap artist CRBRVS. Fans can listen to the music right on the page, browse the merch and get in touch for bookings or collaborations. It's a single scrolling page that shows off the artist's style.",
       technical:
-        'Built with Angular 22, zoneless and signal-based, rendered with SSR and prerendering, and hosted on Firebase. It is covered by 85 unit tests with Vitest, including ones that simulate clicks and dragging in the audio player.',
+        "Built with Angular 22, zoneless and signal-based, rendered with SSR and prerendering, and hosted on Firebase. The audio player is custom-built on the HTML audio element, with a progress bar you can click, drag or move with the keyboard. Songs and merch are plain JSON files, so new releases are added without touching any code. Styling is plain CSS with design tokens and a trimmed copy of Bootstrap's grid, with no Bootstrap JavaScript. The contact form sends mail straight from the browser through EmailJS. It is covered by 85 unit tests with Vitest, including ones that simulate clicks and dragging in the audio player.",
       features: [
         {
           title: 'Custom audio player',
@@ -151,7 +151,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'An online storefront for a bakery in Sibiu. Visitors browse the products by category and put together a cart. The order is sent through a contact form and confirmed by email, with no online payment involved.',
       technical:
-        'Built with Angular (SSR, zoneless, Signals). The product catalog loads from Firebase Realtime Database, with a session cache first and a static JSON file as a fallback, so the store still works if Firebase is slow or down.',
+        "Built with Angular 22 (SSR, zoneless, Signals), with every page prerendered to static HTML and hosted on Firebase. The product catalog loads from Firebase Realtime Database, with a session cache first and a static JSON file as a fallback, so the store still works if Firebase is slow or down. Firebase gets five seconds to answer before the fallback takes over. The catalog reaches the page through Angular's rxResource, which turns the request into signals for the loading state and the data. The cart is a signal-based service saved to localStorage, restored only after the first render so the server and the browser agree on what is shown. Orders and questions go out by email through EmailJS, with no payment step and no backend of its own.",
       features: [
         {
           title: 'Browse by category',
@@ -168,7 +168,7 @@ export class ProjectsComponent implements OnInit {
       ],
       useCase:
         'A customer planning a birthday picks a cake and two trays of pastries, sends the order with a pick-up date, and the bakery replies to confirm.',
-      codeUrl: 'https://github.com/FrunzaDan/misam-sibiu',
+      codeUrl: 'https://github.com/FrunzaDan/bakery-website',
       images: [
         '/assets/images/projects/bakery-1.webp',
         '/assets/images/projects/bakery-2.webp',
@@ -180,7 +180,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'A web app a merchant can use to keep their customer records in one place: names, contact details, addresses and what each customer bought. Records sit behind a login and every change is tracked. It is also my playground for learning, so it keeps getting rebuilt with newer ideas.',
       technical:
-        'The Angular 22 frontend (SSR, zoneless, Signals) calls a layered ASP.NET Core Web API on .NET 10 (controllers, business logic, data access, domain) with JWT authentication, which reaches SQL Server only through stored procedures. Over time it moved from NgModules and zone.js to Signals, and from unsalted password hashes to salted PBKDF2 with a rate-limited login.',
+        'The Angular 22 frontend (SSR, zoneless, Signals) calls a layered ASP.NET Core Web API on .NET 10 (controllers, business logic, data access, domain). The API reaches SQL Server only through stored procedures, called with plain ADO.NET and no ORM, and the schema is an SSDT project deployed with sqlpackage. Login issues a signed JWT that expires after 15 minutes, checked in one place in the middleware, and passwords are hashed with salted PBKDF2 and compared in constant time. Search, sorting and paging run in the database, not in the browser, so the list stays fast as it grows. Over time it moved from NgModules and zone.js to Signals, from unsalted password hashes to PBKDF2 with a rate-limited login, and from browser popups to a custom confirmation dialog. The API is tested with xUnit and the UI with Vitest, focused on the login and session chain.',
       features: [
         {
           title: 'Secure login',
@@ -224,7 +224,7 @@ export class ProjectsComponent implements OnInit {
       description:
         "The twin of the Customer Management System, built for an employer to manage their staff. It keeps each employee's contact details, office, department and salary history in one place. Records sit behind a login and every change is tracked.",
       technical:
-        'Same stack and architecture: Angular 22 (SSR, zoneless, Signals), a layered ASP.NET Core Web API on .NET 10 with JWT authentication, and SQL Server accessed only through stored procedures. Both apps share naming and data conventions, so what is learned in one carries straight over to the other.',
+        'Same stack and architecture as the Customer Management System: Angular 22 (SSR, zoneless, Signals), a layered ASP.NET Core Web API on .NET 10 with JWT authentication, and SQL Server accessed only through stored procedures. On top of that sits an organization structure of offices, departments and cost centers, each with its own headcount and total salary. Every salary change is a new dated record, so the full pay history stays in the database and in the audit log. The database is seeded with a test login and demo offices, departments and cost centers, so the app is usable right after the first start. Both apps share naming and data conventions, so what is learned in one carries straight over to the other. The business logic is covered by xUnit tests and the Angular login and list logic by Vitest.',
       features: [
         {
           title: 'Secure login',
@@ -268,7 +268,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'A scanner that finds every device on your home or office network and works out what each one is: a router, a printer, a TV, a smart bulb. It shows the name, maker and open services of each device, along with how healthy the network is. It also remembers past scans, so you can tell which devices are new and which have gone offline.',
       technical:
-        'A .NET 10 Web API runs a ping sweep, then enriches each responding host with ARP, DNS/mDNS, NetBIOS, TCP/UDP port scans and hand-rolled SNMP, UPnP and HTTP-banner probes, storing every device in SQLite. The Angular 22 frontend (zoneless, Signals) follows the scan live through Server-Sent Events, and both halves are covered by unit tests.',
+        "A .NET 10 Web API pings every address in the subnet, 20 at a time, then examines each host that answers with ARP, DNS/mDNS, NetBIOS and TCP/UDP port scans. SNMP, UPnP and HTTP-banner probes are hand-rolled with no outside libraries, and they only run when the matching port is open, so hosts that don't use them cost nothing extra. The device type is guessed from the MAC vendor, the ping TTL, the open ports and the hostname. Every device is saved to SQLite by MAC address, and details learned in earlier scans are never overwritten by a probe that came back empty. The Angular 22 frontend (zoneless, Signals) follows the scan live through Server-Sent Events. Both halves are covered by unit tests, with xUnit for the API and Vitest for the UI.",
       features: [
         {
           title: 'Device identification',
@@ -310,7 +310,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'When a machine tool cuts metal, the chip it peels off touches the tool for a short distance before curling away, and that distance matters for tool wear and cutting quality. This program measures it automatically from high-speed camera photos. What used to be measured by hand, frame by frame, now takes one command.',
       technical:
-        'A Python batch pipeline built on OpenCV and NumPy: it isolates the tool and the chip with Otsu thresholding and morphological cleanup, then finds their edges with Canny and the two key straight lines with a Hough transform. It is covered by pytest unit tests and checked with Ruff and mypy.',
+        'A Python batch pipeline built on OpenCV and NumPy that runs every frame in a folder through the same steps. Each photo is resized to a fixed width so all the pixel thresholds behave the same, then cropped to the right half, where the cut always happens. Otsu thresholding turns it black and white, and morphological closing and dilation fill the gaps so the tool and the chip form one solid shape. Canny edge detection traces its outline, and a Hough transform finds the two straight lines whose gap is the contact length. Each frame is saved with the measurement drawn on it, next to a six-panel plot of every step for checking the result. A frame that fails is logged and skipped without stopping the batch, and the code is covered by pytest and checked with Ruff and mypy.',
       features: [
         {
           title: 'Batch processing',
@@ -352,7 +352,7 @@ export class ProjectsComponent implements OnInit {
       description:
         'A simple tool for writing a CV right in the browser. You fill in your details and watch the CV take shape next to the form as you type. When it looks right, you download it as a PDF, ready to send.',
       technical:
-        'Written in plain HTML, CSS and vanilla JavaScript, with no framework, build step or backend: it runs by opening a single page. The PDF is generated in the browser with html2pdf.js and split into proper pages, and all data stays on your own device.',
+        'Written in plain HTML, CSS and vanilla JavaScript, with no framework, build step or backend: it runs by opening a single page. The preview redraws as you type and is split into A4 pages with a page number in the footer. The page breaks are worked out from the layout itself, so a job, a school or a heading is never cut in half between two pages. The PDF is generated in the browser with html2pdf.js, with a fix that stops a nearly empty extra page from appearing when the content just fills the last one. Your data is saved to localStorage automatically and can be exported or imported as a JSON file. Nothing is uploaded anywhere, so all data stays on your own device.',
       features: [
         {
           title: 'Live preview',
@@ -409,7 +409,10 @@ export class ProjectsComponent implements OnInit {
     this.enlarged.update((enlarged) => {
       if (!enlarged) return enlarged;
       const count = enlarged.project.images.length;
-      return { ...enlarged, index: (enlarged.index + direction + count) % count };
+      return {
+        ...enlarged,
+        index: (enlarged.index + direction + count) % count,
+      };
     });
   }
 
