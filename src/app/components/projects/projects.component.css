@@ -11,6 +11,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.35s ease;
 }
 
@@ -20,6 +21,21 @@
   /* The global balance wrapping shortens lines unevenly, which fights justification. */
   text-wrap: pretty;
   hyphens: auto;
+}
+
+.project-subheading {
+  font-weight: 700;
+  color: var(--main-red-color);
+  margin: 1.2rem 0 0.4rem;
+}
+
+.project-features {
+  padding-left: 1.4em;
+  text-wrap: pretty;
+}
+
+.project-features li + li {
+  margin-top: 0.3rem;
 }
 
 .btn-project {
