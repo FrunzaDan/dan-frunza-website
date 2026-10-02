@@ -16,7 +16,6 @@
             "outputPath": "dist/dan-frunza-website",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -78,11 +77,7 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:unit-test",
-          "options": {
-            "tsConfig": "tsconfig.spec.json",
-            "runner": "vitest"
-          }
+          "builder": "@angular/build:unit-test"
         }
       }
     }
