@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { SeoService } from '../../services/seo.service';
 
 interface ProjectFeature {
@@ -6,8 +6,14 @@ interface ProjectFeature {
   readonly text: string;
 }
 
+interface EnlargedImage {
+  readonly src: string;
+  readonly alt: string;
+}
+
 interface Project {
-  readonly tech: string;
+  /** Shown as tags beside the project name. */
+  readonly tech: readonly string[];
   readonly name: string;
   /** The non-technical introduction. */
   readonly description: string;
@@ -32,7 +38,7 @@ export class ProjectsComponent implements OnInit {
 
   protected readonly projects: readonly Project[] = [
     {
-      tech: 'Angular',
+      tech: ['Angular'],
       name: 'Imalo Education Website',
       description:
         'Imalo is a German-language afterschool program for children in Sibiu, Romania. Its website is where parents first meet it: what the program offers, the daily schedule, a photo gallery and a way to get in touch. Everything is available in both Romanian and German.',
@@ -62,7 +68,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Angular, .NET',
+      tech: ['Angular', '.NET'],
       name: 'Imalo Education Webapp',
       description:
         'The staff side of Imalo: a web app that keeps track of every child in the afterschool program. It records who picks each child up and when, which days they came, and what lunch and transport cost. Everything the team needs to know about a child is in one place.',
@@ -106,7 +112,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Angular',
+      tech: ['Angular'],
       name: 'CRBRVS Website',
       description:
         "The official website of the rap artist CRBRVS. Fans can listen to the music right on the page, browse the merch and get in touch for bookings or collaborations. It's a single scrolling page that shows off the artist's style.",
@@ -136,7 +142,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Angular',
+      tech: ['Angular'],
       name: 'TestBakery Sibiu',
       description:
         'An online storefront for a bakery in Sibiu. Visitors browse the products by category and put together a cart. The order is sent through a contact form and confirmed by email, with no online payment involved.',
@@ -165,7 +171,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Angular, .NET',
+      tech: ['Angular', '.NET'],
       name: 'Customer Management System',
       description:
         'A web app a merchant can use to keep their customer records in one place: names, contact details, addresses and what each customer bought. Records sit behind a login and every change is tracked. It is also my playground for learning, so it keeps getting rebuilt with newer ideas.',
@@ -209,7 +215,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Angular, .NET',
+      tech: ['Angular', '.NET'],
       name: 'Employee Management System',
       description:
         "The twin of the Customer Management System, built for an employer to manage their staff. It keeps each employee's contact details, office, department and salary history in one place. Records sit behind a login and every change is tracked.",
@@ -253,7 +259,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Angular, .NET',
+      tech: ['Angular', '.NET'],
       name: 'Local Network Discovery',
       description:
         'A scanner that finds every device on your home or office network and works out what each one is: a router, a printer, a TV, a smart bulb. It shows the name, maker and open services of each device, along with how healthy the network is. It also remembers past scans, so you can tell which devices are new and which have gone offline.',
@@ -295,7 +301,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'Python',
+      tech: ['Python'],
       name: 'Tool-Chip Contact Length',
       description:
         'When a machine tool cuts metal, the chip it peels off touches the tool for a short distance before curling away, and that distance matters for tool wear and cutting quality. This program measures it automatically from high-speed camera photos. What used to be measured by hand, frame by frame, now takes one command.',
@@ -337,7 +343,7 @@ export class ProjectsComponent implements OnInit {
       ],
     },
     {
-      tech: 'HTML, CSS, JS',
+      tech: ['HTML', 'CSS', 'JS'],
       name: 'CV Builder',
       description:
         'A simple tool for writing a CV right in the browser. You fill in your details and watch the CV take shape next to the form as you type. When it looks right, you download it as a PDF, ready to send.',
@@ -370,6 +376,18 @@ export class ProjectsComponent implements OnInit {
   // TODO: replace with the real channel URL.
   protected readonly youtubeUrl = 'https://www.youtube.com/';
   protected readonly githubUrl = 'https://github.com/FrunzaDan';
+
+  /** The screenshot shown full size in the lightbox, if any. */
+  protected readonly enlarged = signal<EnlargedImage | null>(null);
+
+  protected imageAlt(project: Project, index: number): string {
+    return `Screenshot ${index + 1} of ${project.images.length} of ${project.name}`;
+  }
+
+  protected openImage(lightbox: HTMLDialogElement, image: EnlargedImage): void {
+    this.enlarged.set(image);
+    lightbox.showModal();
+  }
 
   ngOnInit(): void {
     this.seoService.updateMetaTags({

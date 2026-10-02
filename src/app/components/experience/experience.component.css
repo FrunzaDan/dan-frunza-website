@@ -38,9 +38,49 @@
   transition: all 0.2s;
 }
 
+/* Logos share one height so wide and square ones carry the same weight. */
 .company-logo {
+  height: 2.5rem;
+  width: auto;
   max-width: 12rem;
-  height: auto;
+  object-fit: contain;
+}
+
+/* Long university names break into even lines instead of leaving one word
+   (or half of "Cluj-Napoca") on a line of its own. */
+.item-company {
+  display: inline-block;
+  text-wrap: balance;
+  hyphens: manual;
+}
+
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.item-tag {
+  border: 0.15rem solid var(--main-red-color);
+  border-radius: 1rem;
+  padding: 0.2rem 0.8rem;
+  color: var(--main-red-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 576px) {
+  .company-logo {
+    height: 1.8rem;
+  }
+
+  .item-tag {
+    font-size: 0.85rem;
+    padding: 0.15rem 0.6rem;
+  }
 }
 
 .timeline-item-experience {

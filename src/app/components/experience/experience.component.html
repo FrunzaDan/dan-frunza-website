@@ -33,9 +33,9 @@
             <h3 class="item-title">{{ item.role }}</h3>
             <p class="text-inside-description">{{ item.description }}</p>
             @if (item.bullets) {
-              <ul class="text-inside-description">
+              <ul class="item-tags" aria-label="Main subjects">
                 @for (bullet of item.bullets; track bullet) {
-                  <li>{{ bullet }}</li>
+                  <li class="item-tag">{{ bullet }}</li>
                 }
               </ul>
             }

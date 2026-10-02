@@ -5,11 +5,15 @@
       [class]="first ? 'timeline-item-projects-top' : 'timeline-item-projects'"
     >
       <div class="left-part scroll-reveal">
-        <p class="item-title">{{ project.tech }}</p>
+        <ul class="project-tech" aria-label="Built with">
+          @for (tech of project.tech; track tech) {
+            <li class="project-tech-tag">{{ tech }}</li>
+          }
+        </ul>
       </div>
       <div [class]="first ? 'divider-top' : 'divider'"></div>
       <div class="right-part scroll-reveal">
-        <h2 class="item-title no-margin">{{ project.name }}:</h2>
+        <h2 class="item-title project-name no-margin">{{ project.name }}</h2>
       </div>
     </div>
     <div class="timeline-item-projects">
@@ -20,21 +24,24 @@
             <div class="row g-3">
               @for (image of project.images; track $index) {
                 <div class="col-sm-6">
-                  <div class="project-image-frame">
+                  <button
+                    type="button"
+                    class="project-image-frame"
+                    (click)="
+                      openImage(lightbox, {
+                        src: image,
+                        alt: imageAlt(project, $index),
+                      })
+                    "
+                  >
                     <img
                       [src]="image"
-                      [alt]="
-                        'Screenshot ' +
-                        ($index + 1) +
-                        ' of ' +
-                        project.images.length +
-                        ' of ' +
-                        project.name
-                      "
+                      [alt]="imageAlt(project, $index)"
                       loading="lazy"
                       class="project-image"
                     />
-                  </div>
+                    <span class="visually-hidden">(view full size)</span>
+                  </button>
                 </div>
               }
             </div>
@@ -43,11 +50,6 @@
                 <p class="text-inside-description project-description">
                   {{ project.description }}
                 </p>
-                @if (project.technical) {
-                  <p class="text-inside-description project-description">
-                    {{ project.technical }}
-                  </p>
-                }
                 @if (project.features) {
                   <h3 class="text-inside-description project-subheading">
                     Features
@@ -61,12 +63,26 @@
                   </ul>
                 }
                 @if (project.useCase) {
-                  <h3 class="text-inside-description project-subheading">
-                    Use case
-                  </h3>
-                  <p class="text-inside-description project-description">
-                    {{ project.useCase }}
-                  </p>
+                  <div class="project-use-case">
+                    <h3 class="text-inside-description project-subheading">
+                      Use case
+                    </h3>
+                    <p class="text-inside-description project-description">
+                      {{ project.useCase }}
+                    </p>
+                  </div>
+                }
+                @if (project.technical) {
+                  <details class="project-details">
+                    <summary
+                      class="text-inside-description project-subheading"
+                    >
+                      How it's built
+                    </summary>
+                    <p class="text-inside-description project-description">
+                      {{ project.technical }}
+                    </p>
+                  </details>
                 }
               </div>
             </div>
@@ -157,7 +173,7 @@
                   [href]="project.codeUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn btn-lg btn-primary btn-project"
+                  class="btn btn-lg btn-primary btn-project btn-project-secondary"
                 >
                   <span
                     class="btn-project-icon btn-project-icon-github"
@@ -180,7 +196,7 @@
     </div>
     <div class="divider"></div>
     <div class="right-part scroll-reveal">
-      <h2 class="item-title no-margin">There's more:</h2>
+      <h2 class="item-title project-name no-margin">There's more</h2>
     </div>
   </div>
   <div class="timeline-item-projects-bottom">
@@ -255,4 +271,19 @@
       </div>
     </div>
   </div>
+
+  <dialog
+    #lightbox
+    class="lightbox"
+    aria-label="Screenshot"
+    (click)="lightbox.close()"
+    (close)="enlarged.set(null)"
+  >
+    @if (enlarged(); as image) {
+      <img [src]="image.src" [alt]="image.alt" class="lightbox-image" />
+    }
+    <button type="button" class="lightbox-close" aria-label="Close">
+      &times;
+    </button>
+  </dialog>
 </div>

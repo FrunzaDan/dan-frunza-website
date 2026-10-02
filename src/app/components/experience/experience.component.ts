@@ -99,7 +99,7 @@ export class ExperienceComponent implements OnInit {
       heading: 'Education',
       items: [
         {
-          year: '2022',
+          year: '2020 – 2022',
           company: 'Lucian Blaga University of Sibiu',
           companyUrl: 'https://www.ulbsibiu.ro/en/',
           companyLogo: '/assets/company_logos/ULBS_logo.png',
@@ -114,8 +114,8 @@ export class ExperienceComponent implements OnInit {
           ],
         },
         {
-          year: '2020',
-          company: 'Technical University of Cluj-Napoca',
+          year: '2016 – 2020',
+          company: 'Technical University of Cluj\u2011Napoca',
           companyUrl: 'https://www.utcluj.ro/en/',
           companyLogo: '/assets/company_logos/UTCN_logo.png',
           role: "Bachelor's Degree",
