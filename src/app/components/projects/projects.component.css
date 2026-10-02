@@ -56,6 +56,16 @@
   display: block;
 }
 
+/* The logo PNG is used as a mask so it is painted in the button's current
+   colour (light at rest, red on hover) like the stroked SVG icons. */
+.btn-project-icon-github {
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: url('/assets/images/github_logo.png') center / contain no-repeat;
+  mask: url('/assets/images/github_logo.png') center / contain no-repeat;
+}
+
 /* Bootstrap's .btn:disabled already dims (opacity) and blocks pointer
    events; this badge is the only extra treatment the disabled Demo
    button needs to read as "not available yet" rather than broken. */
