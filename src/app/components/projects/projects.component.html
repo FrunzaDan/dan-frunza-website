@@ -28,10 +28,7 @@
                     type="button"
                     class="project-image-frame"
                     (click)="
-                      openImage(lightbox, {
-                        src: image,
-                        alt: imageAlt(project, $index),
-                      })
+                      openImage(lightbox, project, $index)
                     "
                   >
                     <img
@@ -275,15 +272,49 @@
   <dialog
     #lightbox
     class="lightbox"
-    aria-label="Screenshot"
-    (click)="lightbox.close()"
+    aria-label="Screenshots"
+    (click)="$event.target === lightbox && lightbox.close()"
     (close)="enlarged.set(null)"
+    (keydown)="onLightboxKeydown($event)"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
   >
-    @if (enlarged(); as image) {
-      <img [src]="image.src" [alt]="image.alt" class="lightbox-image" />
+    @if (enlarged(); as current) {
+      <!-- Tracking by the source re-creates the image, so the fade replays on every step. -->
+      @for (src of [enlargedSrc()]; track src) {
+        <img
+          [src]="src"
+          [alt]="imageAlt(current.project, current.index)"
+          class="lightbox-image"
+        />
+      }
+      @if (current.project.images.length > 1) {
+        <button
+          type="button"
+          class="lightbox-nav lightbox-prev"
+          aria-label="Previous screenshot"
+          (click)="step(-1)"
+        >
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <button
+          type="button"
+          class="lightbox-nav lightbox-next"
+          aria-label="Next screenshot"
+          (click)="step(1)"
+        >
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+        <p class="lightbox-counter" aria-live="polite">
+          {{ current.index + 1 }} / {{ current.project.images.length }}
+        </p>
+      }
     }
-    <button type="button" class="lightbox-close" aria-label="Close">
-      &times;
-    </button>
+    <button
+      type="button"
+      class="lightbox-close"
+      aria-label="Close"
+      (click)="lightbox.close()"
+    ></button>
   </dialog>
 </div>

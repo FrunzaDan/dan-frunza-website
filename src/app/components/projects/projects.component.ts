@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { SeoService } from '../../services/seo.service';
 
 interface ProjectFeature {
@@ -6,9 +6,10 @@ interface ProjectFeature {
   readonly text: string;
 }
 
+/** The project whose screenshots the lightbox is showing, and which one. */
 interface EnlargedImage {
-  readonly src: string;
-  readonly alt: string;
+  readonly project: Project;
+  readonly index: number;
 }
 
 interface Project {
@@ -27,6 +28,9 @@ interface Project {
   readonly images:
     readonly [string, string] | readonly [string, string, string, string];
 }
+
+/** How far a finger has to travel sideways before it counts as a swipe. */
+const SWIPE_THRESHOLD_PX = 50;
 
 @Component({
   selector: 'app-projects',
@@ -380,13 +384,49 @@ export class ProjectsComponent implements OnInit {
   /** The screenshot shown full size in the lightbox, if any. */
   protected readonly enlarged = signal<EnlargedImage | null>(null);
 
+  protected readonly enlargedSrc = computed(() => {
+    const enlarged = this.enlarged();
+    return enlarged ? enlarged.project.images[enlarged.index] : null;
+  });
+
+  private touchStartX = 0;
+
   protected imageAlt(project: Project, index: number): string {
     return `Screenshot ${index + 1} of ${project.images.length} of ${project.name}`;
   }
 
-  protected openImage(lightbox: HTMLDialogElement, image: EnlargedImage): void {
-    this.enlarged.set(image);
+  protected openImage(
+    lightbox: HTMLDialogElement,
+    project: Project,
+    index: number,
+  ): void {
+    this.enlarged.set({ project, index });
     lightbox.showModal();
+  }
+
+  /** Steps to the previous (-1) or next (1) screenshot, wrapping around at either end. */
+  protected step(direction: -1 | 1): void {
+    this.enlarged.update((enlarged) => {
+      if (!enlarged) return enlarged;
+      const count = enlarged.project.images.length;
+      return { ...enlarged, index: (enlarged.index + direction + count) % count };
+    });
+  }
+
+  protected onLightboxKeydown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowLeft') this.step(-1);
+    else if (event.key === 'ArrowRight') this.step(1);
+  }
+
+  protected onTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.changedTouches[0].screenX;
+  }
+
+  protected onTouchEnd(event: TouchEvent): void {
+    const swipeDistance = this.touchStartX - event.changedTouches[0].screenX;
+    if (Math.abs(swipeDistance) > SWIPE_THRESHOLD_PX) {
+      this.step(swipeDistance > 0 ? 1 : -1);
+    }
   }
 
   ngOnInit(): void {

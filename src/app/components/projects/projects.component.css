@@ -233,39 +233,183 @@
   }
 }
 
+/* The dialog fills the screen and centres the screenshot. The global reset
+   removes the margin: auto that would otherwise centre a modal dialog. */
 .lightbox {
-  max-width: min(92vw, 1400px);
-  max-height: 92vh;
-  padding: 0;
-  border: 0.4rem solid var(--main-dark-color);
-  border-radius: 1rem;
-  background: var(--main-light-color);
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 1rem 5.5rem;
+  border: none;
+  background: transparent;
   overflow: hidden;
-  cursor: zoom-out;
+}
+
+.lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lightbox::backdrop {
-  background: rgba(var(--main-dark-color-alpha), 0.8);
+  background: rgba(var(--main-dark-color-alpha), 0.85);
 }
 
 .lightbox-image {
   display: block;
-  max-width: 100%;
-  max-height: calc(92vh - 0.8rem);
+  max-width: min(100%, 1400px);
+  max-height: calc(100dvh - 6rem);
   object-fit: contain;
+  border: 0.4rem solid var(--main-light-color);
+  border-radius: 1rem;
+  background: var(--main-light-color);
+  animation: lightbox-fade-in 0.25s ease;
+}
+
+@keyframes lightbox-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
 }
 
 .lightbox-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: none;
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0.15rem solid var(--main-light-color);
   border-radius: 50%;
   background: var(--main-dark-color);
   color: var(--main-light-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* The cross is drawn as two bars rather than the × character, whose position
+   in the line box varies by font and leaves it off centre. */
+.lightbox-close::before,
+.lightbox-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.2rem;
+  height: 0.15rem;
+  border-radius: 0.1rem;
+  background: var(--main-light-color);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.lightbox-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Arrow buttons in the style of the Imalo gallery: a light key that turns
+   dark, here red, under the pointer. */
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0.15rem solid var(--main-dark-color);
+  border-radius: 0.5rem;
+  background: var(--main-light-color);
+  color: var(--main-dark-color);
   font-size: 1.8rem;
+  font-weight: 900;
   line-height: 1;
   cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-prev {
+  left: 1rem;
+}
+
+.lightbox-next {
+  right: 1rem;
+}
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.2rem 0.8rem;
+  border-radius: 1rem;
+  background: var(--main-dark-color);
+  color: var(--main-light-color);
+  font-weight: 600;
+}
+
+.lightbox-nav:focus-visible,
+.lightbox-close:focus-visible {
+  outline: 0.15rem solid var(--main-red-color);
+  outline-offset: 0.2rem;
+}
+
+@media (pointer: fine) {
+  .lightbox-nav:hover,
+  .lightbox-close:hover {
+    border-color: var(--main-light-color);
+    background: var(--main-red-color);
+    color: var(--main-light-color);
+  }
+
+  .lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .lightbox-close:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .lightbox-nav:active {
+    background: var(--main-red-color);
+    color: var(--main-light-color);
+  }
+}
+
+/* On phones the arrows move under the screenshot, either side of the counter,
+   so the image can use the full width. */
+@media only screen and (max-width: 576px) {
+  .lightbox {
+    padding: 4rem 0.5rem 5rem;
+  }
+
+  .lightbox-image {
+    max-height: calc(100dvh - 9rem);
+    border-width: 0.25rem;
+  }
+
+  .lightbox-nav {
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+  }
+
+  .lightbox-counter {
+    bottom: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-image {
+    animation: none;
+  }
 }
