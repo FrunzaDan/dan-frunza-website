@@ -79,9 +79,14 @@ describe('ContactComponent', () => {
       );
     });
 
-    it('does not accept a message of only spaces', () => {
-      component.model.set({ ...validForm, message: '           ' });
+    it('does not accept a name or message of only spaces', () => {
+      component.model.set({
+        ...validForm,
+        name: '   ',
+        message: '           ',
+      });
 
+      expect(component.contactForm.name().invalid()).toBe(true);
       expect(component.contactForm.message().invalid()).toBe(true);
     });
 
@@ -122,9 +127,7 @@ describe('ContactComponent', () => {
 
       await submitForm();
 
-      expect(component.emailPopUpParagraph()).toContain(
-        'Something went wrong',
-      );
+      expect(component.emailPopUpParagraph()).toContain('Something went wrong');
       expect(component.model()).toEqual(validForm);
     });
 
