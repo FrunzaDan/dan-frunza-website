@@ -43,3 +43,6 @@ Thumbs.db
 
 # Firebase
 .firebase/
+
+# Firebase CLI logs
+firebase-debug.log

@@ -17,6 +17,9 @@ describe('ContactComponent', () => {
     message: 'Hello there, nice website!',
   };
 
+  const dialog = (): HTMLDialogElement =>
+    fixture.nativeElement.querySelector('dialog');
+
   const submitForm = async (): Promise<void> => {
     fixture.nativeElement
       .querySelector('form')
@@ -26,6 +29,14 @@ describe('ContactComponent', () => {
 
   beforeEach(async () => {
     sendEmailService = { sendEmailJS: vi.fn() };
+
+    // jsdom has no modal dialog support, so opening and closing only toggle `open`.
+    HTMLDialogElement.prototype.showModal = function (this: HTMLDialogElement) {
+      this.open = true;
+    };
+    HTMLDialogElement.prototype.close = function (this: HTMLDialogElement) {
+      this.open = false;
+    };
 
     TestBed.configureTestingModule({
       imports: [ContactComponent],
@@ -87,7 +98,7 @@ describe('ContactComponent', () => {
       await submitForm();
 
       expect(sendEmailService.sendEmailJS).not.toHaveBeenCalled();
-      expect(component.isEmailModalOpen()).toBe(false);
+      expect(dialog().open).toBe(false);
     });
 
     it('shows a success message and resets the form when the email is sent', async () => {
@@ -97,7 +108,7 @@ describe('ContactComponent', () => {
       await submitForm();
 
       expect(sendEmailService.sendEmailJS).toHaveBeenCalledWith(validForm);
-      expect(component.isEmailModalOpen()).toBe(true);
+      expect(dialog().open).toBe(true);
       expect(component.emailPopUpHeader()).toBe('Hi, Jane Doe');
       expect(component.emailPopUpParagraph()).toBe(
         'Your message was successfully sent!',
@@ -118,14 +129,14 @@ describe('ContactComponent', () => {
       expect(component.model()).toEqual(validForm);
     });
 
-    it('closes the popup with Escape', async () => {
+    it('closes the popup with the OK button', async () => {
       sendEmailService.sendEmailJS.mockResolvedValue(undefined);
       component.model.set(validForm);
       await submitForm();
 
-      component.onModalKeydown(new KeyboardEvent('keydown', { key: 'Escape' }));
+      dialog().querySelector('button')!.click();
 
-      expect(component.isEmailModalOpen()).toBe(false);
+      expect(dialog().open).toBe(false);
     });
   });
 });

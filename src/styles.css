@@ -15,20 +15,13 @@ body {
   padding: 0;
   color: var(--main-dark-color);
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
   background: var(--main-light-color);
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  display: none;
 }
 
 *,
 *::before,
 *::after {
-  font-family: Helvetica;
+  font-family: Helvetica, Arial, sans-serif;
   color: var(--main-dark-color);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -147,12 +140,6 @@ iframe:focus {
 
 .form-control {
   border: 1px solid var(--main-red-color);
-}
-
-.hover-logo {
-  position: relative;
-  transition: all 0.2s;
-  transform-origin: 50% 50%;
 }
 
 .hover-item {
@@ -515,10 +502,6 @@ iframe:focus {
     transform: scale(1.02);
   }
 
-  .hover-logo:hover {
-    transform: scale(1.1);
-  }
-
   .btn-primary:hover {
     background-color: var(--main-light-color) !important;
     border-color: var(--main-red-color) !important;
@@ -553,10 +536,6 @@ iframe:focus {
 
   .hover-card:active {
     transform: scale(1.04);
-  }
-
-  .hover-logo:active {
-    transform: scale(1.1);
   }
 
   .btn-primary:active {
@@ -597,6 +576,11 @@ header {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .divider:after,
+  .divider-top:after {
+    animation: none;
+  }
+
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {

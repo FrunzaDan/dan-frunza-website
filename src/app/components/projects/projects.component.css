@@ -192,14 +192,28 @@
   display: block;
 }
 
-/* The logo PNG is used as a mask so it is painted in the button's current
-   colour (light at rest, red on hover) like the stroked SVG icons. */
-.btn-project-icon-github {
+/* These icon images are used as masks so they are painted in the button's
+   current colour (light at rest, red on hover) like the stroked SVG icons. */
+.btn-project-icon-github,
+.btn-project-icon-youtube,
+.btn-project-icon-external {
   width: 20px;
   height: 20px;
   background-color: currentColor;
-  -webkit-mask: url('/assets/images/github_logo.png') center / contain no-repeat;
-  mask: url('/assets/images/github_logo.png') center / contain no-repeat;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.btn-project-icon-github {
+  --icon: url('/assets/images/github_logo.png');
+}
+
+.btn-project-icon-youtube {
+  --icon: url('/assets/images/youtube-svgrepo-com.svg');
+}
+
+.btn-project-icon-external {
+  --icon: url('/assets/images/external-link-svgrepo-com.svg');
 }
 
 /* The Code button is an outline next to the filled Demo button, so the demo

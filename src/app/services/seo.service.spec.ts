@@ -33,7 +33,6 @@ describe('SeoService', () => {
       'The page does not exist.',
     );
     expect(metaContent('property="og:url"')).toBe(`${SITE_URL}/404`);
-    expect(metaContent('name="twitter:url"')).toBe(`${SITE_URL}/404`);
   });
 
   it('lets search engines index pages unless told otherwise', () => {

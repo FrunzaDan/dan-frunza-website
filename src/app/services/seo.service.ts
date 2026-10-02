@@ -51,7 +51,6 @@ export class SeoService {
       name: 'twitter:description',
       content: config.description,
     });
-    this.meta.updateTag({ name: 'twitter:url', content: url });
 
     if (config.image) {
       this.meta.updateTag({

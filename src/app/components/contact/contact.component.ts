@@ -1,6 +1,5 @@
 import {
   Component,
-  DOCUMENT,
   ElementRef,
   Injector,
   OnInit,
@@ -13,7 +12,6 @@ import { FormField, FormRoot, form } from '@angular/forms/signals';
 import { ContactMeForm } from '../../interfaces/contact-me-form';
 import { SendEmailService } from '../../services/send-email.service';
 import { SeoService } from '../../services/seo.service';
-import { trapTabKey } from '../../shared/focus-trap';
 import { contactFormSchema, emptyContactForm } from './contact-form';
 
 @Component({
@@ -25,14 +23,11 @@ import { contactFormSchema, emptyContactForm } from './contact-form';
 export class ContactComponent implements OnInit {
   private readonly sendEmailService = inject(SendEmailService);
   private readonly seoService = inject(SeoService);
-  private readonly document = inject(DOCUMENT);
   private readonly injector = inject(Injector);
-  private focusBeforeModal: HTMLElement | null = null;
 
   private readonly emailModal =
-    viewChild<ElementRef<HTMLElement>>('emailModal');
+    viewChild.required<ElementRef<HTMLDialogElement>>('emailModal');
 
-  readonly isEmailModalOpen = signal(false);
   readonly emailPopUpHeader = signal('');
   readonly emailPopUpParagraph = signal('');
 
@@ -54,9 +49,14 @@ export class ContactComponent implements OnInit {
   }
 
   private async send(): Promise<void> {
-    this.openEmailModal();
     this.emailPopUpHeader.set('Hi, ' + this.model().name);
     this.emailPopUpParagraph.set('Sending...');
+    // Opened once the new greeting is rendered, so screen readers announce it.
+    // As a modal dialog it keeps the page behind it inert, closes with Escape
+    // and hands focus back to the submit button when it closes.
+    afterNextRender(() => this.emailModal().nativeElement.showModal(), {
+      injector: this.injector,
+    });
 
     try {
       await this.sendEmailService.sendEmailJS(this.model());
@@ -70,31 +70,7 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  /** Opens the popup and moves keyboard focus into it, remembering where it came from. */
-  private openEmailModal(): void {
-    const active = this.document.activeElement;
-    this.focusBeforeModal = active instanceof HTMLElement ? active : null;
-    this.isEmailModalOpen.set(true);
-    afterNextRender(
-      () => this.emailModal()?.nativeElement.focus({ preventScroll: true }),
-      { injector: this.injector },
-    );
-  }
-
   closeEmailModal(): void {
-    this.isEmailModalOpen.set(false);
-    this.focusBeforeModal?.focus({ preventScroll: true });
-    this.focusBeforeModal = null;
-  }
-
-  onModalKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      this.closeEmailModal();
-      return;
-    }
-    const modal = this.emailModal()?.nativeElement;
-    if (event.key === 'Tab' && modal) {
-      trapTabKey(event, modal);
-    }
+    this.emailModal().nativeElement.close();
   }
 }

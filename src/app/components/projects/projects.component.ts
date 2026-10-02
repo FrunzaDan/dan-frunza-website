@@ -377,8 +377,7 @@ export class ProjectsComponent implements OnInit {
     },
   ];
 
-  // TODO: replace with the real channel URL.
-  protected readonly youtubeUrl = 'https://www.youtube.com/';
+  protected readonly youtubeUrl = 'https://www.youtube.com/@DanFrunza9';
   protected readonly githubUrl = 'https://github.com/FrunzaDan';
 
   /** The screenshot shown full size in the lightbox, if any. */

@@ -40,8 +40,14 @@ export const routes: Routes = [
       ),
     title: '404 - Dan Frunza',
   },
+  // Unknown URLs show the 404 page under the address the visitor typed.
+  // Firebase serves the prerendered /404 page for them with a 404 status.
   {
     path: '**',
-    redirectTo: '404',
+    loadComponent: () =>
+      import('./components/page-not-found/page-not-found.component').then(
+        (m) => m.PageNotFoundComponent,
+      ),
+    title: '404 - Dan Frunza',
   },
 ];
