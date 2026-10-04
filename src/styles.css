@@ -1,11 +1,50 @@
 :root {
-  --main-red-color: #db3b57;
-  --main-red-color-alpha: 219, 59, 87;
+  /* Dark enough for 4.9:1 contrast both ways: red text on the light
+     background and light text on red cards. */
+  --main-red-color: #c62f4b;
+  --main-red-color-alpha: 198, 47, 75;
   --main-light-color: #f5f5f5;
   --main-light-color-alpha: 245, 245, 245;
   --main-dark-color: #2b2b2b;
   --main-dark-color-alpha: 43, 43, 43;
+  --text-muted: rgba(var(--main-dark-color-alpha), 0.65);
+
+  /* Type scale. Each step grows with the viewport between a phone and a
+     desktop size, so components need no font-size media queries. */
+  --fs-sm: clamp(0.875rem, 0.75rem + 0.4vw, 1.15rem);
+  --fs-body: clamp(1rem, 0.7rem + 0.9vw, 1.6rem);
+  --fs-h3: clamp(1.5rem, 1.1rem + 1vw, 2rem);
+  --fs-h2: clamp(1.8rem, 1.3rem + 1.4vw, 2.6rem);
+  --fs-h1: clamp(2.6rem, 1.6rem + 3vw, 4rem);
+  --fs-display: clamp(3rem, 1.5rem + 4.5vw, 6rem);
+  --fw-heading: 600;
+
+  /* Shape */
+  --border-heavy: 0.4rem;
+  --border-md: 0.2rem;
+  --border-light: 0.15rem;
+  --line: 2px;
+  --radius-lg: 2rem;
+  --radius-md: 1rem;
+  --radius-pill: 999px;
+  --card-pad: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+
+  /* Motion */
+  --dur-fast: 0.2s;
+  --dur: 0.35s;
+  --dur-slow: 0.5s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* The site's one hover gesture: the element lifts towards the top left and
+     leaves a hard red shadow where it was. Buttons and clickable cards move
+     by --lift; text scales it to its own size (see .hover-text). */
+  --lift: 4px;
+  --lift-shadow: var(--lift) var(--lift) 0 var(--main-red-color);
 }
+
+/* Breakpoints follow Bootstrap's: phone < 576px, small 576-767.98px,
+   medium 768-991.98px, large 992-1199.98px, very large >= 1200px. */
 
 html,
 body {
@@ -62,7 +101,7 @@ h6 {
   padding: 0.75rem 1.25rem;
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
-  border-radius: 0 0 8px 0;
+  border-radius: 0 0 var(--radius-md) 0;
 }
 
 .skip-link:focus-visible {
@@ -121,57 +160,78 @@ iframe:focus {
 }
 
 .custom-card-primary {
-  border: 0.4rem var(--main-dark-color) solid;
-  border-radius: 2rem;
+  border: var(--border-heavy) var(--main-dark-color) solid;
+  border-radius: var(--radius-lg);
   background: var(--main-light-color);
   color: var(--main-dark-color);
 }
 
 .custom-card-third {
-  border: 0.4rem var(--main-red-color) solid;
-  border-radius: 2rem;
+  border: var(--border-heavy) var(--main-red-color) solid;
+  border-radius: var(--radius-lg);
   background: var(--main-red-color);
   color: var(--main-light-color);
 }
 
+/* Shared inner spacing for content cards. */
+.card-padded {
+  padding: var(--card-pad);
+}
+
+/* Title inside a content card (Contact, About, 404). */
+.card-title {
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-h2);
+  margin-bottom: 1rem;
+}
+
 .custom-subtitle-1 {
-  font-size: 4rem;
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-heading);
 }
 
 .form-control {
   border: 1px solid var(--main-red-color);
 }
 
-.hover-item {
-  position: relative;
-  transition: all 0.2s;
-  transform-origin: 50% 50%;
-}
-
-.hover-text {
-  position: relative;
-  transition: all 0.2s;
-  transform-origin: 50% 50%;
-}
-
-.hover-text-nav {
-  position: relative;
-  transition: all 0.2s;
-  transform-origin: 50% 50%;
-}
-
+.hover-text,
+.hover-text-nav,
 .hover-card {
   position: relative;
-  transition: all 0.2s;
-  transform-origin: 50% 50%;
+  transition:
+    transform var(--dur-fast) ease,
+    filter var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+
+/* Text and logos cast their shadow with drop-shadow so it follows the glyph
+   shapes. The offset is in em, so a small link gets a thin shadow and a nav
+   link a thick one. */
+.hover-text,
+.hover-text-nav {
+  --text-lift: max(1.5px, 0.07em);
+  --text-shadow-color: var(--main-red-color);
+}
+
+/* Small, uniform labels that sit in a row (subjects, tech used). */
+.tag {
+  border: var(--border-light) solid var(--main-red-color);
+  border-radius: var(--radius-pill);
+  padding: 0.15em 0.7em;
+  color: var(--main-red-color);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
 }
 
 .item-title {
-  font-size: 2rem;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-heading);
   display: inline-block;
 }
 
-.timeline-item-projects {
+/* One row of the Experience and Projects timelines: .left-part, a divider
+   and .right-part side by side, or a divider and a centred card. */
+.timeline-item {
   position: relative;
   display: table;
   table-layout: fixed;
@@ -179,20 +239,12 @@ iframe:focus {
   padding: 3rem 0rem;
 }
 
-.timeline-item-projects-top {
-  position: relative;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
+.timeline-item-top {
   padding-top: 6rem;
   padding-bottom: 2rem;
 }
 
-.timeline-item-projects-bottom {
-  position: relative;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
+.timeline-item-bottom {
   padding-top: 2rem;
   padding-bottom: 6rem;
 }
@@ -208,36 +260,27 @@ iframe:focus {
 }
 
 /* One look for every primary button, whether it is a <button> or a link
-   styled as one. Bootstrap's .btn variables point at the site colours so its
-   focus, active and disabled states no longer fall back to Bootstrap blue. */
+   styled as one. It stands on its own, without Bootstrap's .btn, so every
+   button shares the same focus ring, hover and disabled state. */
 .btn-primary {
-  --bs-btn-color: var(--main-light-color);
-  --bs-btn-bg: var(--main-dark-color);
-  --bs-btn-border-color: var(--main-dark-color);
-  --bs-btn-hover-color: var(--main-red-color);
-  --bs-btn-hover-bg: var(--main-light-color);
-  --bs-btn-hover-border-color: var(--main-red-color);
-  --bs-btn-focus-shadow-rgb: var(--main-red-color-alpha);
-  --bs-btn-active-color: var(--main-light-color);
-  --bs-btn-active-bg: var(--main-red-color);
-  --bs-btn-active-border-color: var(--main-light-color);
-  --bs-btn-disabled-color: var(--main-light-color);
-  --bs-btn-disabled-bg: var(--main-dark-color);
-  --bs-btn-disabled-border-color: var(--main-dark-color);
-  border: 0.2rem var(--main-dark-color) solid;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5;
+  user-select: none;
+  border: var(--border-md) var(--main-dark-color) solid;
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
   padding: 0.4rem;
   width: 100%;
-  border-radius: 1rem;
-  font-size: 2rem;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-h3);
   cursor: pointer;
   transition:
-    color 0.25s ease,
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
 }
 
 /* Links styled as buttons: a:link's "color: inherit" would otherwise win and
@@ -259,8 +302,8 @@ iframe:focus {
 }
 
 .img-primary {
-  border-radius: 1rem;
-  border: 0.4rem var(--main-red-color) solid;
+  border-radius: var(--radius-md);
+  border: var(--border-heavy) var(--main-red-color) solid;
 }
 
 .right-part {
@@ -271,25 +314,20 @@ iframe:focus {
   vertical-align: top;
 }
 
+/* The timeline's vertical line. .divider adds a pulsing dot level with the
+   row's title; .divider-top lowers the dot for the first row, which has more
+   space above it. */
+.divider,
 .divider-card {
   position: absolute;
-  left: 33%;
-  width: 2px;
-  background-color: var(--main-dark-color);
-  top: 0;
-  bottom: 0;
-}
-
-.divider {
-  position: absolute;
   top: 0;
   left: 33%;
   bottom: 0;
-  width: 2px;
+  width: var(--line);
   background-color: var(--main-dark-color);
 }
 
-.divider:after {
+.divider::after {
   content: '';
   display: block;
   margin-top: 4rem;
@@ -297,38 +335,19 @@ iframe:focus {
   height: 1rem;
   margin-left: -0.45rem;
   border-radius: 0.5rem;
-  border: 2px solid;
+  border: var(--line) solid;
   color: var(--main-red-color);
   background-color: var(--main-light-color);
   animation: pulseAnimation 1.6s infinite;
 }
 
-.divider-top {
-  position: absolute;
-  top: 0;
-  left: 33%;
-  bottom: 0;
-  width: 2px;
-  background-color: var(--main-dark-color);
-}
-
-.divider-top:after {
-  content: '';
-  display: block;
+.divider-top::after {
   margin-top: 7rem;
-  width: 1rem;
-  height: 1rem;
-  margin-left: -0.45rem;
-  border-radius: 0.5rem;
-  border: 2px solid;
-  color: var(--main-red-color);
-  background-color: var(--main-light-color);
-  animation: pulseAnimation 1.6s infinite;
 }
 
 .page-spine-divider {
   /* .divider/.divider-card on the experience/projects pages sit at left:33%
-     of .timeline-item-experience, which has no horizontal padding of its
+     of .timeline-item, which has no horizontal padding of its
      own, so their 33% is relative to content-container's inner content
      width, offset by content-container's own padding. This element instead
      sits directly inside content-container, where percentages resolve
@@ -338,7 +357,7 @@ iframe:focus {
   top: 0;
   bottom: 0;
   left: calc(var(--cc-pad) + (100% - 2 * var(--cc-pad)) * 0.33);
-  width: 2px;
+  width: var(--line);
   padding: 0;
   margin: 0;
   background-color: var(--main-dark-color);
@@ -377,7 +396,8 @@ iframe:focus {
 
 .experience-card-title {
   position: relative;
-  font-size: 6rem;
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-heading);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -394,40 +414,24 @@ iframe:focus {
 }
 
 .text-inside-description {
-  font-size: 1.6rem;
+  font-size: var(--fs-body);
   text-wrap: balance;
 }
 
-/* VERY LARGE SCREENS: */
-@media only screen and (min-width: 1100px) {
-  .item-company {
-    font-size: 2rem;
-  }
+.item-company {
+  font-size: var(--fs-body);
 }
 
-/* LARGE SCREENS: */
-@media only screen and (min-width: 768px) and (max-width: 1100px) {
-  .item-company {
-    font-size: 1.5rem;
-  }
-
+/* MEDIUM AND LARGE SCREENS: */
+@media only screen and (min-width: 768px) and (max-width: 1199.98px) {
   .content-container {
     --cc-pad: 2rem;
   }
 }
 
 /* SMALL SCREENS: */
-@media only screen and (min-width: 576px) and (max-width: 768px) {
-  .item-company {
-    font-size: 1.2rem;
-  }
-
-  .text-inside-description {
-    font-size: 1.2rem;
-  }
-
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .experience-card-title {
-    font-size: 4rem;
     width: 100%;
   }
 
@@ -440,32 +444,18 @@ iframe:focus {
   }
 }
 
-/* VERY SMALL SCREENS: */
-@media only screen and (max-width: 576px) {
+/* PHONES: */
+@media only screen and (max-width: 575.98px) {
   .content-container {
     --cc-pad: 0rem;
   }
 
-  .item-company {
-    font-size: 1rem;
-  }
-
-  .text-inside-description {
-    font-size: 1rem;
-  }
-
   .experience-card-title {
-    font-size: 3rem;
     width: 100%;
   }
 
   .projects-card-container {
     padding: 0rem 1rem;
-  }
-
-  .item-title {
-    font-size: 1.6rem;
-    display: inline-block;
   }
 }
 
@@ -484,30 +474,28 @@ iframe:focus {
 }
 
 @media (pointer: fine) {
-  .hover-item:hover {
-    transform: scale(1.04);
-  }
-
-  .hover-text:hover {
-    transform: scale(1.04);
-    filter: drop-shadow(2px 1px var(--main-red-color));
-  }
-
+  .hover-text:hover,
   .hover-text-nav:hover {
-    transform: scale(1.04);
-    filter: drop-shadow(4px 2px var(--main-red-color));
+    transform: translate(
+      calc(-1 * var(--text-lift)),
+      calc(-1 * var(--text-lift))
+    );
+    filter: drop-shadow(
+      var(--text-lift) var(--text-lift) 0 var(--text-shadow-color)
+    );
   }
 
   .hover-card:hover {
-    transform: scale(1.02);
+    transform: translate(calc(-1 * var(--lift)), calc(-1 * var(--lift)));
+    box-shadow: var(--lift-shadow);
   }
 
   .btn-primary:hover {
     background-color: var(--main-light-color) !important;
     border-color: var(--main-red-color) !important;
     color: var(--main-red-color) !important;
-    transform: translate(-3px, -3px);
-    box-shadow: 4px 4px 0 var(--main-red-color);
+    transform: translate(calc(-1 * var(--lift)), calc(-1 * var(--lift)));
+    box-shadow: var(--lift-shadow);
   }
 
   .btn-primary:active {
@@ -519,23 +507,18 @@ iframe:focus {
   }
 }
 
+/* On touch screens a press shows the shadow without the lift, so the
+   element seems to sink into it under the finger. */
 @media (hover: none), (pointer: coarse) {
-  .hover-item:active {
-    transform: scale(1.1);
-  }
-
-  .hover-text:active {
-    transform: scale(1.04);
-    filter: drop-shadow(4px 4px var(--main-red-color));
-  }
-
+  .hover-text:active,
   .hover-text-nav:active {
-    transform: scale(1.04);
-    filter: drop-shadow(4px 4px var(--main-red-color));
+    filter: drop-shadow(
+      var(--text-lift) var(--text-lift) 0 var(--text-shadow-color)
+    );
   }
 
   .hover-card:active {
-    transform: scale(1.04);
+    box-shadow: var(--lift-shadow);
   }
 
   .btn-primary:active {
@@ -567,7 +550,7 @@ main::before {
   top: 0;
   left: 2%;
   width: 96%;
-  height: 2px;
+  height: var(--line);
   background-color: var(--main-dark-color);
 }
 
@@ -593,9 +576,14 @@ main::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .divider:after,
-  .divider-top:after {
+  .divider::after {
     animation: none;
+  }
+
+  .hover-text,
+  .hover-text-nav,
+  .hover-card {
+    transition: none;
   }
 
   ::view-transition-group(*),

@@ -4,7 +4,7 @@
 }
 
 .skill-value {
-  font-size: 1rem;
+  font-size: var(--fs-sm);
   line-height: 1.1em;
   position: relative;
   float: right;
@@ -14,28 +14,21 @@
 
 .skills-second-style .skill-percentage {
   background-color: var(--main-red-color);
-  border: 2px solid var(--main-light-color);
-  -moz-border-radius: 9px;
-  -webkit-border-radius: 9px;
-  border-radius: 9px;
+  border: var(--line) solid var(--main-light-color);
+  border-radius: var(--radius-pill);
   height: 0.6rem;
   padding: 0;
-  transition: all 0.2s;
+  transition: all var(--dur-fast);
 }
 
 .skills-second-style .skill-container {
   position: relative;
   background-color: transparent;
-  border: 0.2rem solid var(--main-dark-color);
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  border: var(--border-md) solid var(--main-dark-color);
+  border-radius: var(--radius-pill);
   margin-bottom: 20px;
   width: 100%;
-  transition: all 0.2s;
+  transition: all var(--dur-fast);
 }
 
 /* Logos share one height so wide and square ones carry the same weight. */
@@ -63,50 +56,14 @@
   padding: 0;
 }
 
-.item-tag {
-  border: 0.15rem solid var(--main-red-color);
-  border-radius: 1rem;
-  padding: 0.2rem 0.8rem;
-  color: var(--main-red-color);
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575.98px) {
   .company-logo {
     height: 1.8rem;
   }
-
-  .item-tag {
-    font-size: 0.85rem;
-    padding: 0.15rem 0.6rem;
-  }
-}
-
-.timeline-item-experience {
-  position: relative;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  padding: 3rem 0rem;
-}
-
-.experience-card-title {
-  perspective: 1000px; /* Slightly more depth for stronger effect */
-}
-
-.custom-card-primary {
-  transform: rotateY(10deg); /* Stronger 3D tilt */
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.custom-card-primary:hover {
-  transform: rotateY(15deg); /* Even more tilt on hover */
 }
 
 .skill-name {
-  font-size: 1rem;
+  font-size: var(--fs-sm);
   line-height: 1.1em;
   position: relative;
   float: left;

@@ -34,7 +34,7 @@
   position: relative;
   left: 0;
   opacity: 1;
-  transition: all 0.35s ease-out;
+  transition: all var(--dur) ease-out;
   transform-origin: center left;
 }
 

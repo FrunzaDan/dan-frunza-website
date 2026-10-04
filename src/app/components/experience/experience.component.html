@@ -2,7 +2,7 @@
   <h1 class="visually-hidden">Experience and Education</h1>
   @for (section of sections; track section.heading) {
     <section [attr.aria-label]="section.heading">
-      <div class="timeline-item-experience">
+      <div class="timeline-item">
         <div class="divider-card"></div>
         <div class="experience-card-title">
           <h2 class="custom-card-primary px-4 py-2 no-margin">
@@ -11,7 +11,7 @@
         </div>
       </div>
       @for (item of section.items; track item.company) {
-        <div class="timeline-item-experience">
+        <div class="timeline-item">
           <div class="left-part">
             <p class="item-title">{{ item.year }}</p>
             <p>
@@ -35,7 +35,7 @@
             @if (item.bullets) {
               <ul class="item-tags" aria-label="Main subjects">
                 @for (bullet of item.bullets; track bullet) {
-                  <li class="item-tag">{{ bullet }}</li>
+                  <li class="tag">{{ bullet }}</li>
                 }
               </ul>
             }
@@ -61,10 +61,7 @@
                   <div class="skill-name">{{ skill.name }}</div>
                   <div class="skill-value">{{ skill.level }}%</div>
                 </div>
-                <div
-                  class="skill-container skill-hover-item"
-                  aria-hidden="true"
-                >
+                <div class="skill-container" aria-hidden="true">
                   <div
                     class="skill-percentage"
                     [style.width.%]="skill.level"

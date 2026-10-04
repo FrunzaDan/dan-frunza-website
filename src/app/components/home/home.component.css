@@ -38,8 +38,8 @@
 
 .custom-home-motto {
   align-self: center;
-  font-weight: 600;
-  font-size: 6rem;
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-display);
   line-height: 1.15;
   text-align: center;
   color: var(--main-light-color);
@@ -50,13 +50,13 @@
   flex-direction: column;
   gap: 1rem;
   height: 100%;
-  padding: 2.5rem 2rem;
+  padding: var(--card-pad);
 }
 
 .custom-card-about {
   position: relative;
   overflow: hidden;
-  padding: 3rem;
+  padding: var(--card-pad);
 }
 
 .about-shape {
@@ -89,12 +89,6 @@
 .custom-card-about-mirror .about-content {
   margin-left: auto;
   text-align: right;
-}
-
-.about-title {
-  font-weight: 600;
-  font-size: 2.6rem;
-  margin-bottom: 1rem;
 }
 
 .about-text {
@@ -199,54 +193,22 @@
   }
 }
 
-/* MID-LARGE SCREENS: */
-@media only screen and (min-width: 769px) and (max-width: 1219px) {
+/* MEDIUM AND LARGE SCREENS: */
+@media only screen and (min-width: 768px) and (max-width: 1199.98px) {
   .custom-img-home-logo-behind {
     height: calc(80% + 5rem);
   }
-
-  .custom-home-motto {
-    font-size: 5rem;
-  }
-
-  .about-title {
-    font-size: 2.2rem;
-  }
 }
 
-/* MID SCREENS: */
-@media only screen and (min-width: 576px) and (max-width: 768px) {
+/* SMALL SCREENS AND PHONES: */
+@media only screen and (max-width: 767.98px) {
   .custom-img-home-1 {
     height: calc(100% + 4rem);
   }
-
-  .custom-home-motto {
-    font-size: 3.5rem;
-  }
-
-  .custom-card-about {
-    padding: 2.25rem;
-  }
-
-  .about-title {
-    font-size: 2rem;
-  }
 }
 
-/* SMALL SCREENS: */
-@media only screen and (max-width: 576px) {
-  .custom-img-home-1 {
-    height: calc(100% + 4rem);
-  }
-
-  .custom-home-motto {
-    font-size: 3.8rem;
-  }
-
-  .custom-card-about {
-    padding: 1.75rem;
-  }
-
+/* PHONES: */
+@media only screen and (max-width: 575.98px) {
   .about-shape {
     top: -25%;
     right: -25%;
@@ -258,10 +220,6 @@
     right: auto;
     left: -25%;
   }
-
-  .about-title {
-    font-size: 1.8rem;
-  }
 }
 
 /* ---------- Animations ---------- */
@@ -270,8 +228,8 @@
   display: inline-flex;
   align-self: flex-start;
   transition:
-    filter 0.35s ease,
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter var(--dur) ease,
+    transform var(--dur) var(--ease-bounce);
 }
 
 /* The icon image is a mask painted in the tile's text colour. It sits on
@@ -317,7 +275,7 @@
    the motto follows a moment later. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-card {
-    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation: hero-rise 0.7s var(--ease-out) backwards;
   }
 
   .hero-card-second {
@@ -325,7 +283,7 @@
   }
 
   .custom-home-motto {
-    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s backwards;
+    animation: hero-rise 0.7s var(--ease-out) 0.4s backwards;
   }
 }
 

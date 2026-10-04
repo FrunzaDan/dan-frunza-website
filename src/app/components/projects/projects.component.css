@@ -1,5 +1,5 @@
 .project-name {
-  font-weight: 700;
+  font-weight: var(--fw-heading);
 }
 
 .project-tech {
@@ -12,13 +12,7 @@
   padding: 0;
 }
 
-.project-tech-tag {
-  border: 0.15rem solid var(--main-red-color);
-  border-radius: 1rem;
-  padding: 0.15rem 0.7rem;
-  color: var(--main-red-color);
-  font-size: 1.1rem;
-  font-weight: 600;
+.project-tech .tag {
   white-space: nowrap;
 }
 
@@ -29,11 +23,11 @@
   width: 100%;
   overflow: hidden;
   padding: 0;
-  border-radius: 1rem;
-  border: 0.15rem solid rgba(var(--main-dark-color-alpha), 0.25);
+  border-radius: var(--radius-md);
+  border: var(--border-light) solid rgba(var(--main-dark-color-alpha), 0.25);
   background: none;
   cursor: zoom-in;
-  transition: border-color 0.25s ease;
+  transition: border-color var(--dur-fast) ease;
 }
 
 /* The image carries the 16:9 shape rather than the button around it: Safari
@@ -46,7 +40,7 @@
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top;
-  transition: transform 0.35s ease;
+  transition: transform var(--dur) ease;
 }
 
 .project-image-frame:hover,
@@ -55,8 +49,8 @@
 }
 
 .project-image-frame:focus-visible {
-  outline: 0.15rem solid var(--main-red-color);
-  outline-offset: 0.15rem;
+  outline: var(--border-light) solid var(--main-red-color);
+  outline-offset: var(--border-light);
 }
 
 @media (pointer: fine) {
@@ -74,7 +68,7 @@
 }
 
 .project-subheading {
-  font-weight: 700;
+  font-weight: var(--fw-heading);
   color: var(--main-red-color);
   margin: 1.2rem 0 0.4rem;
 }
@@ -91,8 +85,8 @@
 .project-use-case {
   margin-top: 1.2rem;
   padding: 0.6rem 1rem;
-  border-left: 0.3rem solid var(--main-red-color);
-  border-radius: 0 0.6rem 0.6rem 0;
+  border-left: var(--border-heavy) solid var(--main-red-color);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   background: rgba(var(--main-red-color-alpha), 0.07);
 }
 
@@ -129,7 +123,7 @@
   border-right: 0.15em solid var(--main-red-color);
   border-bottom: 0.15em solid var(--main-red-color);
   transform: rotate(-45deg);
-  transition: transform 0.4s ease;
+  transition: transform var(--dur) ease;
 }
 
 .project-details[open] summary::before {
@@ -143,8 +137,8 @@
   display: grid;
   grid-template-rows: 0fr;
   transition:
-    grid-template-rows 0.4s ease,
-    content-visibility 0.4s allow-discrete;
+    grid-template-rows var(--dur) ease,
+    content-visibility var(--dur) allow-discrete;
 }
 
 .project-details[open]::details-content {
@@ -157,16 +151,16 @@
   margin: 0;
   opacity: 0;
   transition:
-    margin-top 0.4s ease,
-    opacity 0.3s ease;
+    margin-top var(--dur) ease,
+    opacity var(--dur-fast) ease;
 }
 
 .project-details[open] .project-description {
   margin-top: 0.6rem;
   opacity: 1;
   transition:
-    margin-top 0.4s ease,
-    opacity 0.3s ease 0.1s;
+    margin-top var(--dur) ease,
+    opacity var(--dur-fast) ease 0.1s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -242,17 +236,12 @@
   text-transform: uppercase;
   letter-spacing: 0.03em;
   padding: 0.25rem 0.6rem;
-  border-radius: 1rem;
+  border-radius: var(--radius-pill);
   white-space: nowrap;
 }
 
-/* SMALL SCREENS: */
-@media only screen and (max-width: 576px) {
-  .project-tech-tag {
-    font-size: 0.8rem;
-    padding: 0.1rem 0.5rem;
-  }
-
+/* PHONES: */
+@media only screen and (max-width: 575.98px) {
   /* Justified text leaves wide gaps between words on narrow screens. */
   .project-description {
     text-align: left;
@@ -265,7 +254,7 @@
 }
 
 .btn-project-icon {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform var(--dur) var(--ease-bounce);
 }
 
 /* The button icons nudge when a button is used. */
@@ -318,8 +307,8 @@
   max-width: min(100%, 1400px);
   max-height: calc(100dvh - 6rem);
   object-fit: contain;
-  border: 0.4rem solid var(--main-light-color);
-  border-radius: 1rem;
+  border: var(--border-heavy) solid var(--main-light-color);
+  border-radius: var(--radius-md);
   background: var(--main-light-color);
   animation: lightbox-fade-in 0.25s ease;
 }
@@ -337,14 +326,14 @@
   right: 1.5rem;
   width: 2.75rem;
   height: 2.75rem;
-  border: 0.15rem solid var(--main-light-color);
+  border: var(--border-light) solid var(--main-light-color);
   border-radius: 50%;
   background: var(--main-dark-color);
   color: var(--main-light-color);
   cursor: pointer;
   transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
+    background-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
 }
 
 /* The cross is drawn as two bars rather than the × character, whose position
@@ -378,8 +367,8 @@
   width: 4rem;
   height: 2.75rem;
   padding: 0;
-  border: 0.15rem solid var(--main-dark-color);
-  border-radius: 0.5rem;
+  border: var(--border-light) solid var(--main-dark-color);
+  border-radius: var(--radius-md);
   background: var(--main-light-color);
   color: var(--main-dark-color);
   font-size: 1.8rem;
@@ -387,10 +376,10 @@
   line-height: 1;
   cursor: pointer;
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
 }
 
 .lightbox-prev {
@@ -408,7 +397,7 @@
   transform: translateX(-50%);
   margin: 0;
   padding: 0.2rem 0.8rem;
-  border-radius: 1rem;
+  border-radius: var(--radius-pill);
   background: var(--main-dark-color);
   color: var(--main-light-color);
   font-weight: 600;
@@ -416,8 +405,8 @@
 
 .lightbox-nav:focus-visible,
 .lightbox-close:focus-visible {
-  outline: 0.15rem solid var(--main-red-color);
-  outline-offset: 0.2rem;
+  outline: var(--border-light) solid var(--main-red-color);
+  outline-offset: var(--border-md);
 }
 
 @media (pointer: fine) {
@@ -446,7 +435,7 @@
 
 /* On phones the arrows move under the screenshot, either side of the counter,
    so the image can use the full width. */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575.98px) {
   .lightbox {
     padding: 4rem 0.5rem 5rem;
   }

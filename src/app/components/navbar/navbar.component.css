@@ -3,104 +3,41 @@
   /* Keeps the navbar, and the phone menu that opens under it, above the
        page content (the home logo reaches up behind the hamburger button). */
   z-index: 10;
+  /* Bootstrap's hover colour is 80% black. A drop-shadow takes on the text's
+     transparency, so the red hover shadow came out pale; an opaque colour
+     keeps it the true brand red. */
+  --bs-navbar-hover-color: var(--main-dark-color);
 }
 
 .navbar {
   padding: 0.4rem 1rem;
 }
 
+/* Link size and spacing grow with the viewport so the brand and the three
+   links always fit on one line; they top out at the h1 size. */
 .nav-link {
   display: inline-block;
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5.2vw, 4rem);
+  margin-left: clamp(5px, 0.8vw, 10px);
+  margin-right: clamp(5px, 0.8vw, 10px);
 }
 
 #navbarBrand {
   display: inline-block;
-  transition: all 0.2s;
+  width: clamp(60px, 7.7vw, 100px);
+  margin: 10px;
+  transition: all var(--dur-fast);
   transform-origin: 50% 50%;
 }
 
-/* VERY LARGE SCREENS: */
-@media only screen and (min-width: 1300px) {
+/* PHONES: */
+@media only screen and (max-width: 575.98px) {
   .nav-link {
-    font-size: 5.4rem;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
-  #navbarBrand {
-    width: 100px;
-    margin: 10px;
-  }
-}
-
-/* VERY LARGE SCREENS: */
-@media only screen and (min-width: 1100px) and (max-width: 1300px) {
-  .nav-link {
-    font-size: 4.2rem;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
-  #navbarBrand {
-    width: 80px;
-    margin: 10px;
-  }
-}
-
-/* LARGE SCREENS: */
-@media only screen and (min-width: 920px) and (max-width: 1100px) {
-  .nav-link {
-    font-size: 3.5rem;
-    margin-left: 8px;
-    margin-right: 8px;
+    font-size: var(--fs-display);
   }
 
   #navbarBrand {
     width: 70px;
-    margin: 10px;
-  }
-}
-
-/* LARGE SCREENS: */
-@media only screen and (min-width: 768px) and (max-width: 920px) {
-  .nav-link {
-    font-size: 2.5rem;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-
-  #navbarBrand {
-    width: 70px;
-    margin: 10px;
-  }
-}
-
-/* SMALL SCREENS: */
-@media only screen and (min-width: 576px) and (max-width: 768px) {
-  .nav-link {
-    font-size: 1.8rem;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  #navbarBrand {
-    width: 60px;
-    margin: 10px;
-  }
-}
-
-/* VERY SMALL SCREENS: */
-@media only screen and (max-width: 576px) {
-  .nav-link {
-    font-size: 4rem;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  #navbarBrand {
-    width: 70px;
-    margin: 10px;
   }
 
   .nav-item {
@@ -124,10 +61,10 @@
     visibility: hidden;
     transform: translateY(-20px);
     transition:
-      max-height 0.5s ease,
-      opacity 0.5s ease,
-      transform 0.5s ease,
-      visibility 0s linear 0.5s;
+      max-height var(--dur-slow) ease,
+      opacity var(--dur-slow) ease,
+      transform var(--dur-slow) ease,
+      visibility 0s linear var(--dur-slow);
   }
 
   .navbar-collapse.show {

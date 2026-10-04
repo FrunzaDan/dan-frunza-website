@@ -11,7 +11,7 @@
   top: 0;
   left: 2%;
   width: 96%;
-  height: 2px;
+  height: var(--line);
   background-color: var(--main-dark-color);
 }
 
@@ -23,26 +23,33 @@
   margin-top: 1.5rem;
 }
 
+/* The navbar's logo and hover at three quarters of its size; it also leads
+   home. */
+.app-footer-brand {
+  display: inline-block;
+  /* The hover lift is measured in em; three quarters of the nav link's font
+     size scales the lift and shadow down with the logo. */
+  font-size: clamp(1.35rem, 3.9vw, 3rem);
+}
+
 #footerBrand {
-  width: 70px;
   display: block;
-  transition: all 0.2s;
-  transform-origin: 50% 50%;
+  width: clamp(45px, 5.8vw, 75px);
 }
 
 .app-footer-copyright {
-  font-size: 1.2rem;
-  color: rgba(var(--main-dark-color-alpha), 0.7);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
   text-align: center;
 }
 
-/* VERY SMALL SCREENS: */
-@media only screen and (max-width: 576px) {
-  #footerBrand {
-    width: 60px;
+/* PHONES: */
+@media only screen and (max-width: 575.98px) {
+  .app-footer-brand {
+    font-size: calc(var(--fs-display) * 0.75);
   }
 
-  .app-footer-copyright {
-    font-size: 1rem;
+  #footerBrand {
+    width: 55px;
   }
 }

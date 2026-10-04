@@ -1,26 +1,24 @@
 <div class="content-container">
   <h1 class="visually-hidden">Projects</h1>
   @for (project of projects; track project.name; let first = $first) {
-    <div
-      [class]="first ? 'timeline-item-projects-top' : 'timeline-item-projects'"
-    >
+    <div class="timeline-item" [class.timeline-item-top]="first">
       <div class="left-part">
         <ul class="project-tech" aria-label="Built with">
           @for (tech of project.tech; track tech) {
-            <li class="project-tech-tag">{{ tech }}</li>
+            <li class="tag">{{ tech }}</li>
           }
         </ul>
       </div>
-      <div [class]="first ? 'divider-top' : 'divider'"></div>
+      <div class="divider" [class.divider-top]="first"></div>
       <div class="right-part">
         <h2 class="item-title project-name no-margin">{{ project.name }}</h2>
       </div>
     </div>
-    <div class="timeline-item-projects">
+    <div class="timeline-item">
       <div class="divider-card"></div>
       <div class="projects-card-container">
-        <div class="custom-card-primary w-100 p-2 hover-card">
-          <div class="container-fluid py-3">
+        <div class="custom-card-primary w-100 card-padded">
+          <div>
             <div class="row g-3">
               @for (image of project.images; track $index) {
                 <div class="col-sm-6">
@@ -86,7 +84,7 @@
                 @if (!project.demoUrl) {
                   <button
                     type="button"
-                    class="btn btn-lg btn-primary btn-project"
+                    class="btn-primary btn-project"
                     disabled
                   >
                     <span class="btn-project-icon" aria-hidden="true">
@@ -124,7 +122,7 @@
                     [href]="project.demoUrl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn btn-lg btn-primary btn-project"
+                    class="btn-primary btn-project"
                   >
                     <span
                       class="btn-project-icon btn-project-icon-external"
@@ -141,7 +139,7 @@
                   [href]="project.codeUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn btn-lg btn-primary btn-project btn-project-secondary"
+                  class="btn-primary btn-project btn-project-secondary"
                 >
                   <span
                     class="btn-project-icon btn-project-icon-github"
@@ -158,7 +156,7 @@
       </div>
     </div>
   }
-  <div class="timeline-item-projects">
+  <div class="timeline-item">
     <div class="left-part">
       <p class="item-title">YouTube &amp; GitHub</p>
     </div>
@@ -167,11 +165,11 @@
       <h2 class="item-title project-name no-margin">There's more</h2>
     </div>
   </div>
-  <div class="timeline-item-projects-bottom">
+  <div class="timeline-item timeline-item-bottom">
     <div class="divider-card"></div>
     <div class="projects-card-container">
-      <div class="custom-card-primary w-100 p-2 hover-card">
-        <div class="container-fluid py-3">
+      <div class="custom-card-primary w-100 card-padded">
+        <div>
           <p class="text-inside-description project-description">
             These are only some of the things I build. On my YouTube channel I
             show projects in action and walk through how they work, and on
@@ -187,7 +185,7 @@
                 [href]="youtubeUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn btn-lg btn-primary btn-project"
+                class="btn-primary btn-project"
               >
                 <span
                   class="btn-project-icon btn-project-icon-youtube"
@@ -203,7 +201,7 @@
                 [href]="githubUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn btn-lg btn-primary btn-project"
+                class="btn-primary btn-project"
               >
                 <span
                   class="btn-project-icon btn-project-icon-github"
