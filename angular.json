@@ -26,10 +26,7 @@
               "src/sitemap.xml",
               "src/google829ea8c08fad9b84.html"
             ],
-            "styles": [
-              "./src/bootstrap-essentials.css",
-              "./src/styles.css"
-            ],
+            "styles": ["./src/bootstrap-essentials.css", "./src/styles.css"],
             "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "static"
@@ -78,12 +75,19 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "84cfb626-b003-4531-b902-2805fd232799"
+    "analytics": "84cfb626-b003-4531-b902-2805fd232799",
+    "schematicCollections": ["angular-eslint"]
   },
   "schematics": {
     "@schematics/angular:component": {
