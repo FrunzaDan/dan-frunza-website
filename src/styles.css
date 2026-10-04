@@ -1,3 +1,31 @@
+/* Space Grotesk, the headings' typeface, served from this site (no request to
+   Google). One variable file per alphabet covers weights 500 to 700; the
+   browser only downloads latin-ext when a page has a character from it.
+   Licence: /assets/fonts/SpaceGrotesk-OFL.txt */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('/assets/fonts/SpaceGrotesk-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('/assets/fonts/SpaceGrotesk-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   /* The site's only three colours. Every other colour, Bootstrap's included,
      is one of these or a see-through mix of one (color-mix with
@@ -50,7 +78,26 @@
   --fs-h2: clamp(1.8rem, 1.3rem + 1.4vw, 2.6rem);
   --fs-h1: clamp(2.6rem, 1.6rem + 3vw, 4rem);
   --fs-display: clamp(3rem, 1.5rem + 4.5vw, 6rem);
-  --fw-heading: 600;
+  --fw-heading: 700;
+
+  /* Two typefaces: Space Grotesk for headings, the navbar and buttons;
+     Helvetica for reading. Headings sit slightly tighter than body text. */
+  --font-display: 'Space Grotesk', Helvetica, Arial, sans-serif;
+  --font-body: Helvetica, Arial, sans-serif;
+  --bs-body-font-family: var(--font-body);
+  --tracking-heading: -0.02em;
+
+  /* Spacing scale. Margins, paddings and gaps use these steps, so the space
+     between things repeats the same few distances on every page. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
 
   /* Shape */
   --border-heavy: 0.4rem;
@@ -85,6 +132,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: var(--font-body);
   color: var(--main-dark-color);
   overflow-x: hidden;
   background: var(--main-light-color);
@@ -93,13 +141,20 @@ body {
 *,
 *::before,
 *::after {
-  font-family: Helvetica, Arial, sans-serif;
   color: var(--main-dark-color);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Form fields and buttons don't inherit the font by default. */
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 a,
@@ -119,11 +174,35 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
   color: var(--main-dark-color);
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
+}
+
+/* Everything that names or labels a part of the page uses the display face. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.item-title,
+.tag,
+.nav-link,
+.btn-primary {
+  font-family: var(--font-display);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.item-title {
+  letter-spacing: var(--tracking-heading);
 }
 
 .skip-link {
@@ -131,7 +210,7 @@ h6 {
   top: -999px;
   left: 0;
   z-index: 1000;
-  padding: 0.75rem 1.25rem;
+  padding: var(--space-3) var(--space-4);
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
   border-radius: 0 0 var(--radius-md) 0;
@@ -215,7 +294,7 @@ iframe:focus {
 .card-title {
   font-weight: var(--fw-heading);
   font-size: var(--fs-h2);
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .custom-subtitle-1 {
@@ -253,7 +332,7 @@ iframe:focus {
   padding: 0.15em 0.7em;
   color: var(--main-red-color);
   font-size: var(--fs-sm);
-  font-weight: var(--fw-heading);
+  font-weight: 600;
 }
 
 .item-title {
@@ -269,24 +348,24 @@ iframe:focus {
   display: table;
   table-layout: fixed;
   width: 100%;
-  padding: 3rem 0rem;
+  padding: var(--space-7) 0;
 }
 
 .timeline-item-top {
-  padding-top: 6rem;
-  padding-bottom: 2rem;
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-6);
 }
 
 .timeline-item-bottom {
-  padding-top: 2rem;
-  padding-bottom: 6rem;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-9);
 }
 
 .left-part {
   width: 33%;
   display: table-cell;
-  padding-left: 0.8rem;
-  padding-right: 1.4rem;
+  padding-left: var(--space-3);
+  padding-right: var(--space-5);
   min-height: 100%;
   text-align: right;
   vertical-align: top;
@@ -303,7 +382,7 @@ iframe:focus {
   border: var(--border-md) var(--main-dark-color) solid;
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
-  padding: 0.4rem;
+  padding: var(--space-2);
   width: 100%;
   border-radius: var(--radius-md);
   font-size: var(--fs-h3);
@@ -354,8 +433,8 @@ iframe:focus {
 .right-part {
   width: 67%;
   display: table-cell;
-  padding-left: 25px;
-  padding-right: 1.4rem;
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
   vertical-align: top;
 }
 
@@ -455,7 +534,7 @@ iframe:focus {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0rem 4rem;
+  padding: 0 var(--space-8);
 }
 
 .text-inside-description {
@@ -485,7 +564,7 @@ iframe:focus {
   }
 
   .projects-card-container {
-    padding: 0rem 2rem;
+    padding: 0 var(--space-6);
   }
 }
 
@@ -500,7 +579,7 @@ iframe:focus {
   }
 
   .projects-card-container {
-    padding: 0rem 1rem;
+    padding: 0 var(--space-4);
   }
 }
 

@@ -1,6 +1,6 @@
 .app-footer {
   position: relative;
-  padding: 2.5rem 1rem 2rem;
+  padding: var(--space-6) var(--space-4) var(--space-6);
 }
 
 /* Same divider bar as .navbar-custom-style::after, flipped to sit at the
@@ -19,8 +19,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
 }
 
 /* The navbar's logo and hover at three quarters of its size; it also leads

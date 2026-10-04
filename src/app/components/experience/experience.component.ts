@@ -11,15 +11,10 @@ interface ExperienceItem {
   readonly bullets?: readonly string[];
 }
 
-interface Skill {
-  readonly name: string;
-  /** How well I know it, from 0 to 100. */
-  readonly level: number;
-}
-
 interface SkillGroup {
   readonly heading: string;
-  readonly skills: readonly Skill[];
+  /** Strongest first. */
+  readonly skills: readonly string[];
 }
 
 interface ExperienceSection {
@@ -136,23 +131,28 @@ export class ExperienceComponent implements OnInit {
     {
       heading: 'Tech Skills',
       skills: [
-        { name: 'Dot Net, C#', level: 85 },
-        { name: 'Blazor, Razor', level: 70 },
-        { name: 'Databases', level: 80 },
-        { name: 'Microservices & Web APIs', level: 90 },
-        { name: 'Html, CSS, Javascript', level: 80 },
-        { name: 'Angular', level: 70 },
+        'Microservices',
+        'Web APIs',
+        '.NET',
+        'C#',
+        'Databases',
+        'HTML',
+        'CSS',
+        'JavaScript',
+        'Angular',
+        'Blazor',
+        'Razor',
       ],
     },
     {
       heading: 'Soft Skills',
       skills: [
-        { name: 'Time management', level: 80 },
-        { name: 'Communication', level: 95 },
-        { name: 'Adaptability', level: 80 },
-        { name: 'Problem-solving', level: 85 },
-        { name: 'Team work', level: 90 },
-        { name: 'Creativity', level: 85 },
+        'Communication',
+        'Teamwork',
+        'Problem-solving',
+        'Creativity',
+        'Adaptability',
+        'Time management',
       ],
     },
   ];

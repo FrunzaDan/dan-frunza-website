@@ -54,20 +54,9 @@
           >
             {{ group.heading }}
           </h2>
-          <ul class="skills-info skills-second-style p-2 pt-4">
-            @for (skill of group.skills; track skill.name) {
-              <li>
-                <div class="clearfix">
-                  <div class="skill-name">{{ skill.name }}</div>
-                  <div class="skill-value">{{ skill.level }}%</div>
-                </div>
-                <div class="skill-container" aria-hidden="true">
-                  <div
-                    class="skill-percentage"
-                    [style.width.%]="skill.level"
-                  ></div>
-                </div>
-              </li>
+          <ul class="skill-tags">
+            @for (skill of group.skills; track skill) {
+              <li class="tag">{{ skill }}</li>
             }
           </ul>
         </section>

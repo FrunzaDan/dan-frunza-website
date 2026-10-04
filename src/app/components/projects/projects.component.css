@@ -6,9 +6,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.4rem;
+  gap: var(--space-2);
   list-style: none;
-  margin: 0.3rem 0 0;
+  margin: var(--space-1) 0 0;
   padding: 0;
 }
 
@@ -71,7 +71,7 @@
 .project-subheading {
   font-weight: var(--fw-heading);
   color: var(--main-red-color);
-  margin: 1.2rem 0 0.4rem;
+  margin: var(--space-4) 0 var(--space-2);
 }
 
 .project-features {
@@ -80,12 +80,12 @@
 }
 
 .project-features li + li {
-  margin-top: 0.3rem;
+  margin-top: var(--space-1);
 }
 
 .project-use-case {
-  margin-top: 1.2rem;
-  padding: 0.6rem 1rem;
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-4);
   border-left: var(--border-heavy) solid var(--main-red-color);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   background: color-mix(in srgb, var(--main-red-color) 7%, transparent);
@@ -101,13 +101,13 @@
 }
 
 .project-details {
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 .project-details summary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
   cursor: pointer;
   list-style: none;
 }
@@ -157,7 +157,7 @@
 }
 
 .project-details[open] .project-description {
-  margin-top: 0.6rem;
+  margin-top: var(--space-2);
   opacity: 1;
   transition:
     margin-top var(--dur) ease,
@@ -176,7 +176,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: var(--space-2);
   text-decoration: none;
   position: relative;
 }
@@ -236,7 +236,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  padding: 0.25rem 0.6rem;
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-pill);
   white-space: nowrap;
 }
@@ -250,7 +250,7 @@
 
   .btn-project-badge {
     font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
+    padding: var(--space-1) var(--space-2);
   }
 }
 
@@ -397,7 +397,7 @@
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
-  padding: 0.2rem 0.8rem;
+  padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-pill);
   background: var(--main-dark-color);
   color: var(--main-light-color);

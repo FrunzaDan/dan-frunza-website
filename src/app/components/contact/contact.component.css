@@ -4,20 +4,20 @@
 }
 
 .contact-card-subtitle {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-6);
 }
 
 /* ---------- Form (left card) ---------- */
 
 .contact-form-field {
-  margin-bottom: 1.4rem;
+  margin-bottom: var(--space-5);
 }
 
 .contact-form-label {
   display: block;
   font-size: var(--fs-body);
   font-weight: var(--fw-heading);
-  margin-bottom: 0.4rem;
+  margin-bottom: var(--space-2);
 }
 
 .contact-required-marker {
@@ -34,7 +34,7 @@
   width: 100%;
   border: var(--border-light) solid var(--main-dark-color);
   border-radius: var(--radius-md);
-  padding: 0.6rem 0.8rem;
+  padding: var(--space-2) var(--space-3);
   font-size: var(--fs-body);
   background: var(--main-light-color);
 }
@@ -56,13 +56,13 @@
 }
 
 .contact-invalid-feedback {
-  margin-top: 0.4rem;
+  margin-top: var(--space-2);
   font-size: var(--fs-sm);
   color: var(--main-red-color);
 }
 
 .contact-submit {
-  margin-top: 0.6rem;
+  margin-top: var(--space-2);
   cursor: pointer;
 }
 
@@ -87,15 +87,17 @@
 
 .contact-info-list {
   list-style: none;
+  /* No list indent, so the icons line up with the heading above. */
+  padding-left: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: var(--space-5);
 }
 
 .contact-info-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .contact-info-icon {
@@ -211,7 +213,8 @@
     animation-delay: 0.45s;
   }
 
-  .contact-form > .contact-submit {
+  .contact-form > .contact-submit,
+  .contact-info-item:nth-child(5) {
     animation-delay: 0.55s;
   }
 

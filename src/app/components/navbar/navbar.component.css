@@ -26,16 +26,37 @@
 }
 
 .navbar {
-  padding: 0.4rem 1rem;
+  padding: var(--space-2) var(--space-4);
 }
 
-/* Link size and spacing grow with the viewport so the brand and the three
-   links always fit on one line; they top out at the h1 size. */
+/* Page links at the h3 size, so the hero below stays the biggest thing on
+   the page; their spacing grows with the viewport. */
 .nav-link {
   display: inline-block;
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  margin-left: clamp(var(--space-2), 1.5vw, var(--space-5));
+  margin-right: clamp(var(--space-2), 1.5vw, var(--space-5));
+}
+
+/* The logo's link keeps a larger font size only because the hover lift and
+   shadow are measured in em (the footer logo is set to match). */
+.navbar-brand-link {
   font-size: clamp(1.8rem, 5.2vw, 4rem);
   margin-left: clamp(5px, 0.8vw, 10px);
   margin-right: clamp(5px, 0.8vw, 10px);
+}
+
+/* The page you are on is underlined in red. */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.2em;
+  height: max(var(--line), 0.1em);
+  border-radius: var(--radius-pill);
+  background-color: var(--main-red-color);
 }
 
 #navbarBrand {
@@ -49,6 +70,10 @@
 /* PHONES: */
 @media only screen and (max-width: 575.98px) {
   .nav-link {
+    font-size: var(--fs-h1);
+  }
+
+  .navbar-brand-link {
     font-size: var(--fs-display);
   }
 
