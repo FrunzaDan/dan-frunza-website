@@ -38,10 +38,8 @@ export class SeoService {
     const url = SITE_URL + (config.path === '/' ? '' : config.path);
 
     this.meta.updateTag({ name: 'description', content: config.description });
-    this.meta.updateTag({
-      name: 'robots',
-      content: config.robots ?? DEFAULT_ROBOTS,
-    });
+    const robots = config.robots ?? DEFAULT_ROBOTS;
+    this.meta.updateTag({ name: 'robots', content: robots });
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({
       property: 'og:description',
@@ -70,7 +68,12 @@ export class SeoService {
       });
     }
 
-    this.updateCanonicalUrl(url);
+    // A page kept out of search results has no address to point search engines to.
+    if (robots.includes('noindex')) {
+      this.document.querySelector('link[rel="canonical"]')?.remove();
+    } else {
+      this.updateCanonicalUrl(url);
+    }
     this.updateStructuredData(config.structuredData);
   }
 

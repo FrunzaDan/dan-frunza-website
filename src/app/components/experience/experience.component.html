@@ -25,7 +25,13 @@
               >
             </p>
             <p>
-              <img [src]="item.companyLogo" class="company-logo" alt="" />
+              <img
+                [src]="item.companyLogo.src"
+                [width]="item.companyLogo.width"
+                [height]="item.companyLogo.height"
+                class="company-logo"
+                alt=""
+              />
             </p>
           </div>
           <div class="divider"></div>

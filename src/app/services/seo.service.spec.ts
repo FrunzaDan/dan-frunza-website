@@ -115,4 +115,19 @@ describe('SeoService', () => {
     service.updateMetaTags({ description: 'Projects', path: '/projects' });
     expect(scripts().length).toBe(0);
   });
+
+  it('drops the canonical link on pages kept out of search results', () => {
+    service.updateMetaTags({ description: 'Home', path: '/' });
+    service.updateMetaTags({
+      description: '404',
+      path: '/404',
+      robots: 'noindex, nofollow',
+    });
+    expect(canonicalLinks().length).toBe(0);
+
+    service.updateMetaTags({ description: 'Projects', path: '/projects' });
+    expect(canonicalLinks()[0].getAttribute('href')).toBe(
+      `${SITE_URL}/projects`,
+    );
+  });
 });
