@@ -28,7 +28,6 @@
   display: block;
   width: 100%;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
   padding: 0;
   border-radius: 1rem;
   border: 0.15rem solid rgba(var(--main-dark-color-alpha), 0.25);
@@ -37,10 +36,14 @@
   transition: border-color 0.25s ease;
 }
 
+/* The image carries the 16:9 shape rather than the button around it: Safari
+   on iPad sizes a button's aspect-ratio box wrongly, so a 100% height image
+   came out taller than the frame and cover zoomed the screenshot in. */
 .project-image {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top;
   transition: transform 0.35s ease;

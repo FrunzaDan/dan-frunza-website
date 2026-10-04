@@ -554,6 +554,23 @@ header {
   view-transition-name: site-header;
 }
 
+/* The line under the navbar. It belongs to main rather than the header so
+   the page can paint over it: the home portrait reaches up past it, and the
+   header's own layer (z-index 10) would otherwise cut across the head. */
+main {
+  position: relative;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2%;
+  width: 96%;
+  height: 2px;
+  background-color: var(--main-dark-color);
+}
+
 ::view-transition-old(root) {
   animation: page-out 0.18s ease-in both;
 }
