@@ -1,159 +1,156 @@
 .navbar-custom-style {
-    position: relative;
-    /* Keeps the navbar, and the phone menu that opens under it, above the
+  position: relative;
+  /* Keeps the navbar, and the phone menu that opens under it, above the
        page content (the home logo reaches up behind the hamburger button). */
-    z-index: 10;
+  z-index: 10;
 }
 
 .navbar {
-    padding: 0.4rem 1rem;
-
+  padding: 0.4rem 1rem;
 }
 
 .navbar-custom-style::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 2%;
-    width: 96%;
-    height: 2px;
-    background-color: var(--main-dark-color);
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2%;
+  width: 96%;
+  height: 2px;
+  background-color: var(--main-dark-color);
 }
 
 .nav-link {
-    display: inline-block;
-    font-size: 2.5rem;
+  display: inline-block;
+  font-size: 2.5rem;
 }
 
 #navbarBrand {
-    display: inline-block;
-    transition: all .2s;
-    transform-origin: 50% 50%;
+  display: inline-block;
+  transition: all 0.2s;
+  transform-origin: 50% 50%;
 }
 
 /* VERY LARGE SCREENS: */
 @media only screen and (min-width: 1300px) {
-    .nav-link {
-        font-size: 5.4rem;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+  .nav-link {
+    font-size: 5.4rem;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
-    #navbarBrand {
-        width: 100px;
-        margin: 10px;
-
-    }
+  #navbarBrand {
+    width: 100px;
+    margin: 10px;
+  }
 }
 
 /* VERY LARGE SCREENS: */
 @media only screen and (min-width: 1100px) and (max-width: 1300px) {
-    .nav-link {
-        font-size: 4.2rem;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+  .nav-link {
+    font-size: 4.2rem;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
-    #navbarBrand {
-        width: 80px;
-        margin: 10px;
-
-    }
+  #navbarBrand {
+    width: 80px;
+    margin: 10px;
+  }
 }
 
 /* LARGE SCREENS: */
 @media only screen and (min-width: 920px) and (max-width: 1100px) {
-    .nav-link {
-        font-size: 3.5rem;
-        margin-left: 8px;
-        margin-right: 8px;
-    }
+  .nav-link {
+    font-size: 3.5rem;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
 
-    #navbarBrand {
-        width: 70px;
-        margin: 10px;
-    }
+  #navbarBrand {
+    width: 70px;
+    margin: 10px;
+  }
 }
 
 /* LARGE SCREENS: */
 @media only screen and (min-width: 768px) and (max-width: 920px) {
-    .nav-link {
-        font-size: 2.5rem;
-        margin-left: 8px;
-        margin-right: 8px;
-    }
+  .nav-link {
+    font-size: 2.5rem;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
 
-    #navbarBrand {
-        width: 70px;
-        margin: 10px;
-    }
+  #navbarBrand {
+    width: 70px;
+    margin: 10px;
+  }
 }
 
 /* SMALL SCREENS: */
 @media only screen and (min-width: 576px) and (max-width: 768px) {
-    .nav-link {
-        font-size: 1.8rem;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+  .nav-link {
+    font-size: 1.8rem;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 
-    #navbarBrand {
-        width: 60px;
-        margin: 10px;
-    }
+  #navbarBrand {
+    width: 60px;
+    margin: 10px;
+  }
 }
 
 /* VERY SMALL SCREENS: */
 @media only screen and (max-width: 576px) {
-    .nav-link {
-        font-size: 4rem;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+  .nav-link {
+    font-size: 4rem;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 
-    #navbarBrand {
-        width: 70px;
-        margin: 10px;
-    }
+  #navbarBrand {
+    width: 70px;
+    margin: 10px;
+  }
 
-    .nav-item {
-        margin-left: auto;
-        margin-right: auto;
-    }
+  .nav-item {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .custom-nav-list {
-        filter: drop-shadow(0 0 2rem var(--main-light-color));
-    }
+  .custom-nav-list {
+    filter: drop-shadow(0 0 2rem var(--main-light-color));
+  }
 }
 
 /* On phones the menu slides down when the hamburger button opens it and back
    up when it closes. visibility waits for the slide to finish before hiding
    the links, so they also leave the tab order once the menu is closed. */
 @media only screen and (max-width: 575.98px) {
-    .navbar-collapse {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-20px);
-        transition:
-            max-height 0.5s ease,
-            opacity 0.5s ease,
-            transform 0.5s ease,
-            visibility 0s linear 0.5s;
-    }
+  .navbar-collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition:
+      max-height 0.5s ease,
+      opacity 0.5s ease,
+      transform 0.5s ease,
+      visibility 0s linear 0.5s;
+  }
 
-    .navbar-collapse.show {
-        max-height: 500px;
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        transition-delay: 0s;
-    }
+  .navbar-collapse.show {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .navbar-collapse {
-        transition: none;
-    }
+  .navbar-collapse {
+    transition: none;
+  }
 }

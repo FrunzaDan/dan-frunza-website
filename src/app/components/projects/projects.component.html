@@ -27,9 +27,7 @@
                   <button
                     type="button"
                     class="project-image-frame"
-                    (click)="
-                      openImage(lightbox, project, $index)
-                    "
+                    (click)="openImage(lightbox, project, $index)"
                   >
                     <img
                       [src]="image"
@@ -71,9 +69,7 @@
                 }
                 @if (project.technical) {
                   <details class="project-details">
-                    <summary
-                      class="text-inside-description project-subheading"
-                    >
+                    <summary class="text-inside-description project-subheading">
                       How it's built
                     </summary>
                     <p class="text-inside-description project-description">

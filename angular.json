@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DanFrunza_Website": {
+    "dan-frunza-website": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -65,10 +65,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "DanFrunza_Website:build:production"
+              "buildTarget": "dan-frunza-website:build:production"
             },
             "development": {
-              "buildTarget": "DanFrunza_Website:build:development"
+              "buildTarget": "dan-frunza-website:build:development"
             }
           },
           "defaultConfiguration": "development"

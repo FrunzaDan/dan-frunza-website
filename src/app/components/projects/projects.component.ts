@@ -26,8 +26,7 @@ interface Project {
   readonly demoUrl?: string;
   /** Screenshots shown in a two-column grid: two fill one row, four make a 2×2 grid. */
   readonly images:
-    | readonly [string, string]
-    | readonly [string, string, string, string];
+    readonly [string, string] | readonly [string, string, string, string];
 }
 
 /** How far a finger has to travel sideways before it counts as a swipe. */

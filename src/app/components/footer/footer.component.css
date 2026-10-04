@@ -1,48 +1,48 @@
 .app-footer {
-    position: relative;
-    padding: 2.5rem 1rem 2rem;
+  position: relative;
+  padding: 2.5rem 1rem 2rem;
 }
 
 /* Same divider bar as .navbar-custom-style::after, flipped to sit at the
    top of the footer instead of the bottom of the navbar. */
 .app-footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 2%;
-    width: 96%;
-    height: 2px;
-    background-color: var(--main-dark-color);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2%;
+  width: 96%;
+  height: 2px;
+  background-color: var(--main-dark-color);
 }
 
 .app-footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
 }
 
 #footerBrand {
-    width: 70px;
-    display: block;
-    transition: all .2s;
-    transform-origin: 50% 50%;
+  width: 70px;
+  display: block;
+  transition: all 0.2s;
+  transform-origin: 50% 50%;
 }
 
 .app-footer-copyright {
-    font-size: 1.2rem;
-    color: rgba(var(--main-dark-color-alpha), 0.7);
-    text-align: center;
+  font-size: 1.2rem;
+  color: rgba(var(--main-dark-color-alpha), 0.7);
+  text-align: center;
 }
 
 /* VERY SMALL SCREENS: */
 @media only screen and (max-width: 576px) {
-    #footerBrand {
-        width: 60px;
-    }
+  #footerBrand {
+    width: 60px;
+  }
 
-    .app-footer-copyright {
-        font-size: 1rem;
-    }
+  .app-footer-copyright {
+    font-size: 1rem;
+  }
 }

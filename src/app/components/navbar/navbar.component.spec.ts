@@ -10,9 +10,7 @@ describe('NavbarComponent', () => {
   let fixture: ComponentFixture<NavbarComponent>;
 
   const toggler = () =>
-    fixture.nativeElement.querySelector(
-      '.navbar-toggler',
-    ) as HTMLButtonElement;
+    fixture.nativeElement.querySelector('.navbar-toggler') as HTMLButtonElement;
   const menu = () =>
     fixture.nativeElement.querySelector('#main-nav') as HTMLElement;
 
