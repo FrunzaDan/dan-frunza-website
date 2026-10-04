@@ -14,7 +14,13 @@ export interface SeoMetaConfig {
   robots?: string;
   /** The Open Graph locale of the page's text, `en_US` unless given. */
   locale?: string;
+  /** Makes the page an Open Graph `profile` of this person; otherwise it is a `website`. */
+  profile?: { firstName: string; lastName: string };
+  /** Schema.org data for search engines, written into the page as JSON-LD. */
+  structuredData?: object;
 }
+
+const STRUCTURED_DATA_ID = 'structured-data';
 
 const DEFAULT_ROBOTS =
   'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
@@ -46,6 +52,7 @@ export class SeoService {
       property: 'og:locale',
       content: config.locale ?? 'en_US',
     });
+    this.updateProfileTags(config.profile);
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({
       name: 'twitter:description',
@@ -64,6 +71,43 @@ export class SeoService {
     }
 
     this.updateCanonicalUrl(url);
+    this.updateStructuredData(config.structuredData);
+  }
+
+  private updateProfileTags(profile: SeoMetaConfig['profile']): void {
+    this.meta.updateTag({
+      property: 'og:type',
+      content: profile ? 'profile' : 'website',
+    });
+    if (profile) {
+      this.meta.updateTag({
+        property: 'profile:first_name',
+        content: profile.firstName,
+      });
+      this.meta.updateTag({
+        property: 'profile:last_name',
+        content: profile.lastName,
+      });
+    } else {
+      this.meta.removeTag('property="profile:first_name"');
+      this.meta.removeTag('property="profile:last_name"');
+    }
+  }
+
+  /** Pages without structured data drop the previous page's, so it never describes the wrong page. */
+  private updateStructuredData(data: object | undefined): void {
+    let script = this.document.getElementById(STRUCTURED_DATA_ID);
+    if (!data) {
+      script?.remove();
+      return;
+    }
+    if (!script) {
+      script = this.document.createElement('script');
+      script.id = STRUCTURED_DATA_ID;
+      script.setAttribute('type', 'application/ld+json');
+      this.document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(data);
   }
 
   private updateCanonicalUrl(url: string): void {

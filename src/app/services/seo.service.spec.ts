@@ -12,7 +12,9 @@ describe('SeoService', () => {
 
   beforeEach(() => {
     document.head
-      .querySelectorAll('link[rel="canonical"], meta[name], meta[property]')
+      .querySelectorAll(
+        'link[rel="canonical"], meta[name], meta[property], script[type="application/ld+json"]',
+      )
       .forEach((element) => element.remove());
 
     TestBed.configureTestingModule({});
@@ -74,5 +76,43 @@ describe('SeoService', () => {
 
     expect(canonicalLinks().length).toBe(1);
     expect(canonicalLinks()[0].getAttribute('href')).toBe(SITE_URL);
+  });
+
+  it('marks a page as a profile only when given one', () => {
+    service.updateMetaTags({
+      description: 'Home',
+      path: '/',
+      profile: { firstName: 'Dan', lastName: 'Frunza' },
+    });
+    expect(metaContent('property="og:type"')).toBe('profile');
+    expect(metaContent('property="profile:first_name"')).toBe('Dan');
+    expect(metaContent('property="profile:last_name"')).toBe('Frunza');
+
+    service.updateMetaTags({ description: 'Projects', path: '/projects' });
+    expect(metaContent('property="og:type"')).toBe('website');
+    expect(metaContent('property="profile:first_name"')).toBeUndefined();
+    expect(metaContent('property="profile:last_name"')).toBeUndefined();
+  });
+
+  it('writes structured data for one page and drops it on the next', () => {
+    const scripts = () =>
+      document.head.querySelectorAll('script[type="application/ld+json"]');
+    const data = { '@context': 'https://schema.org', '@type': 'ProfilePage' };
+
+    service.updateMetaTags({
+      description: 'Home',
+      path: '/',
+      structuredData: data,
+    });
+    service.updateMetaTags({
+      description: 'Home',
+      path: '/',
+      structuredData: data,
+    });
+    expect(scripts().length).toBe(1);
+    expect(JSON.parse(scripts()[0].textContent ?? '')).toEqual(data);
+
+    service.updateMetaTags({ description: 'Projects', path: '/projects' });
+    expect(scripts().length).toBe(0);
   });
 });
