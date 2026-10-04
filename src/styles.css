@@ -1,13 +1,46 @@
 :root {
-  /* Dark enough for 4.9:1 contrast both ways: red text on the light
+  /* The site's only three colours. Every other colour, Bootstrap's included,
+     is one of these or a see-through mix of one (color-mix with
+     transparent), so changing a value here changes it everywhere. The red is
+     dark enough for 4.9:1 contrast both ways: red text on the light
      background and light text on red cards. */
-  --main-red-color: #c62f4b;
-  --main-red-color-alpha: 198, 47, 75;
-  --main-light-color: #f5f5f5;
-  --main-light-color-alpha: 245, 245, 245;
   --main-dark-color: #2b2b2b;
-  --main-dark-color-alpha: 43, 43, 43;
-  --text-muted: rgba(var(--main-dark-color-alpha), 0.65);
+  --main-light-color: #f5f5f5;
+  --main-red-color: #c62f4b;
+  --text-muted: color-mix(in srgb, var(--main-dark-color) 65%, transparent);
+
+  /* Bootstrap's own palette, pointed at the three colours above so its form
+     and reboot styles never bring in their greys, white or blue. */
+  --bs-body-color: var(--main-dark-color);
+  --bs-body-bg: var(--main-light-color);
+  --bs-emphasis-color: var(--main-dark-color);
+  --bs-secondary-color: var(--text-muted);
+  --bs-tertiary-color: color-mix(
+    in srgb,
+    var(--main-dark-color) 50%,
+    transparent
+  );
+  --bs-secondary-bg: color-mix(
+    in srgb,
+    var(--main-dark-color) 10%,
+    var(--main-light-color)
+  );
+  --bs-tertiary-bg: color-mix(
+    in srgb,
+    var(--main-dark-color) 5%,
+    var(--main-light-color)
+  );
+  --bs-border-color: var(--main-dark-color);
+  --bs-highlight-color: var(--main-light-color);
+  --bs-highlight-bg: var(--main-red-color);
+  --bs-code-color: var(--main-red-color);
+  --bs-form-invalid-color: var(--main-red-color);
+  --bs-form-invalid-border-color: var(--main-red-color);
+  --bs-focus-ring-color: color-mix(
+    in srgb,
+    var(--main-red-color) 25%,
+    transparent
+  );
 
   /* Type scale. Each step grows with the viewport between a phone and a
      desktop size, so components need no font-size media queries. */
@@ -299,6 +332,18 @@ iframe:focus {
 .btn-primary:disabled {
   opacity: 0.65;
   pointer-events: none;
+}
+
+/* The leaf logo. The SVG is only its shape (a mask); the colour is the
+   site's dark, so it follows the variable like everything else. Size it with
+   a width or a height; the other side follows the logo's proportions. */
+.brand-logo {
+  display: block;
+  vertical-align: middle;
+  aspect-ratio: 187.52 / 189.61;
+  background-color: var(--main-dark-color);
+  -webkit-mask: url('/assets/DanFrunzaLogo_Mini.svg') center / contain no-repeat;
+  mask: url('/assets/DanFrunzaLogo_Mini.svg') center / contain no-repeat;
 }
 
 .img-primary {

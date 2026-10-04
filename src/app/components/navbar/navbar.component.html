@@ -3,11 +3,12 @@
   aria-label="Main navigation"
 >
   <a routerLink="/" class="nav-link hover-text-nav" (click)="closeMenu()">
-    <img
+    <span
       id="navbarBrand"
-      src="/assets/DanFrunzaLogo_Mini.svg"
-      alt="Dan Frunza, home"
-    />
+      class="brand-logo"
+      role="img"
+      aria-label="Dan Frunza, home"
+    ></span>
   </a>
   <app-hamburger-button
     [isOpen]="isMenuOpen()"

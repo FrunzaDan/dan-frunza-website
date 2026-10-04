@@ -3,10 +3,26 @@
   /* Keeps the navbar, and the phone menu that opens under it, above the
        page content (the home logo reaches up behind the hamburger button). */
   z-index: 10;
-  /* Bootstrap's hover colour is 80% black. A drop-shadow takes on the text's
-     transparency, so the red hover shadow came out pale; an opaque colour
-     keeps it the true brand red. */
+  /* Bootstrap builds its navbar colours from pure black; these use the site's
+     dark instead. Links you are not on are dimmed to the muted text colour,
+     and the current one is solid. Hover is opaque too: a drop-shadow takes on
+     the text's transparency, so a see-through link would pale the red hover
+     shadow. */
+  --bs-navbar-color: var(--text-muted);
   --bs-navbar-hover-color: var(--main-dark-color);
+  --bs-navbar-active-color: var(--main-dark-color);
+  --bs-navbar-brand-color: var(--main-dark-color);
+  --bs-navbar-brand-hover-color: var(--main-dark-color);
+  --bs-navbar-disabled-color: color-mix(
+    in srgb,
+    var(--main-dark-color) 30%,
+    transparent
+  );
+  --bs-navbar-toggler-border-color: color-mix(
+    in srgb,
+    var(--main-dark-color) 15%,
+    transparent
+  );
 }
 
 .navbar {

@@ -24,7 +24,8 @@
   overflow: hidden;
   padding: 0;
   border-radius: var(--radius-md);
-  border: var(--border-light) solid rgba(var(--main-dark-color-alpha), 0.25);
+  border: var(--border-light) solid
+    color-mix(in srgb, var(--main-dark-color) 25%, transparent);
   background: none;
   cursor: zoom-in;
   transition: border-color var(--dur-fast) ease;
@@ -87,7 +88,7 @@
   padding: 0.6rem 1rem;
   border-left: var(--border-heavy) solid var(--main-red-color);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  background: rgba(var(--main-red-color-alpha), 0.07);
+  background: color-mix(in srgb, var(--main-red-color) 7%, transparent);
 }
 
 .project-use-case .project-subheading {
@@ -299,7 +300,7 @@
 }
 
 .lightbox::backdrop {
-  background: rgba(var(--main-dark-color-alpha), 0.85);
+  background: color-mix(in srgb, var(--main-dark-color) 85%, transparent);
 }
 
 .lightbox-image {

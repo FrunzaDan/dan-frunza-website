@@ -2,7 +2,7 @@
 <svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">
 <style type="text/css">
-	.blueprint_een{fill:#111918;}
+	.blueprint_een{fill:currentColor;}
 </style>
 <path class="blueprint_een" d="M23,17h-7v-1h7V17z M23,18h-7v1h7V18z M23,8h-7v1h7V8z M23,6h-7v1h7V6z M10,22.05V19.95
 	c-1.141-0.232-2-1.24-2-2.45c0-1.209,0.859-2.218,2-2.45V9.95C8.859,9.718,8,8.709,8,7.5C8,6.119,9.119,5,10.5,5S13,6.119,13,7.5

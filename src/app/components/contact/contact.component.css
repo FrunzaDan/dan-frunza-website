@@ -47,7 +47,8 @@
 .contact-form .form-control:focus {
   outline: none;
   border-color: var(--main-red-color);
-  box-shadow: 0 0 0 0.2rem rgba(var(--main-red-color-alpha), 0.25);
+  box-shadow: 0 0 0 0.2rem
+    color-mix(in srgb, var(--main-red-color) 25%, transparent);
 }
 
 .contact-form .form-control.is-invalid {
@@ -73,12 +74,13 @@
   border: var(--border-heavy) solid var(--main-red-color);
   border-radius: var(--radius-lg);
   background: var(--main-light-color);
-  box-shadow: 0 0 1rem rgba(var(--main-dark-color-alpha), 0.25);
+  box-shadow: 0 0 1rem
+    color-mix(in srgb, var(--main-dark-color) 25%, transparent);
   text-align: center;
 }
 
 .send-email-modal::backdrop {
-  background: rgba(var(--main-dark-color-alpha), 0.6);
+  background: color-mix(in srgb, var(--main-dark-color) 60%, transparent);
 }
 
 /* ---------- Info card (right card) ---------- */
