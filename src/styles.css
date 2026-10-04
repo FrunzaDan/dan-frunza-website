@@ -347,8 +347,8 @@ iframe:focus {
 }
 
 /* Shared scroll-reveal: any element with this class slides up into place as
-   it enters the viewport. Used across every page (home, experience, projects,
-   contact) for one consistent scroll "wow" feel. Kept off structural divider
+   it enters the viewport. Only the home page uses it; the other pages stay
+   still while scrolling. Kept off structural divider
    elements (.divider/.divider-card/.page-spine-divider) since those need to
    stay put so adjacent rows' segments still line up into a continuous line
    while a row is mid-animation. */

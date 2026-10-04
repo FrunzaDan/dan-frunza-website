@@ -4,7 +4,7 @@
     <div
       [class]="first ? 'timeline-item-projects-top' : 'timeline-item-projects'"
     >
-      <div class="left-part scroll-reveal">
+      <div class="left-part">
         <ul class="project-tech" aria-label="Built with">
           @for (tech of project.tech; track tech) {
             <li class="project-tech-tag">{{ tech }}</li>
@@ -12,13 +12,13 @@
         </ul>
       </div>
       <div [class]="first ? 'divider-top' : 'divider'"></div>
-      <div class="right-part scroll-reveal">
+      <div class="right-part">
         <h2 class="item-title project-name no-margin">{{ project.name }}</h2>
       </div>
     </div>
     <div class="timeline-item-projects">
       <div class="divider-card"></div>
-      <div class="projects-card-container scroll-reveal">
+      <div class="projects-card-container">
         <div class="custom-card-primary w-100 p-2 hover-card">
           <div class="container-fluid py-3">
             <div class="row g-3">
@@ -159,17 +159,17 @@
     </div>
   }
   <div class="timeline-item-projects">
-    <div class="left-part scroll-reveal">
+    <div class="left-part">
       <p class="item-title">YouTube &amp; GitHub</p>
     </div>
     <div class="divider"></div>
-    <div class="right-part scroll-reveal">
+    <div class="right-part">
       <h2 class="item-title project-name no-margin">There's more</h2>
     </div>
   </div>
   <div class="timeline-item-projects-bottom">
     <div class="divider-card"></div>
-    <div class="projects-card-container scroll-reveal">
+    <div class="projects-card-container">
       <div class="custom-card-primary w-100 p-2 hover-card">
         <div class="container-fluid py-3">
           <p class="text-inside-description project-description">

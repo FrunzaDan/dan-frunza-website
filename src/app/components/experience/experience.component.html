@@ -4,7 +4,7 @@
     <section [attr.aria-label]="section.heading">
       <div class="timeline-item-experience">
         <div class="divider-card"></div>
-        <div class="experience-card-title scroll-reveal">
+        <div class="experience-card-title">
           <h2 class="custom-card-primary px-4 py-2 no-margin">
             {{ section.heading }}
           </h2>
@@ -12,7 +12,7 @@
       </div>
       @for (item of section.items; track item.company) {
         <div class="timeline-item-experience">
-          <div class="left-part scroll-reveal">
+          <div class="left-part">
             <p class="item-title">{{ item.year }}</p>
             <p>
               <a
@@ -29,7 +29,7 @@
             </p>
           </div>
           <div class="divider"></div>
-          <div class="right-part scroll-reveal">
+          <div class="right-part">
             <h3 class="item-title">{{ item.role }}</h3>
             <p class="text-inside-description">{{ item.description }}</p>
             @if (item.bullets) {
@@ -48,7 +48,7 @@
   <div class="container-fluid px-4 pb-4">
     <div class="row">
       @for (group of skillGroups; track group.heading) {
-        <section class="col-sm-6 scroll-reveal">
+        <section class="col-sm-6">
           <h2
             class="custom-card-primary custom-subtitle-1 text-center px-4 py-2 no-margin"
           >
