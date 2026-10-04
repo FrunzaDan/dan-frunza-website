@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build --configuration production && cp dist/dan-frunza-website/browser/404/index.html dist/dan-frunza-website/browser/404.html",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +29,7 @@
     "@angular/compiler-cli": "^22.2.0",
     "@types/node": "^26.6.3",
     "jsdom": "^30.1.1",
+    "prettier": "^3.9.9",
     "typescript": "~6.0.3",
     "vitest": "^5.0.2"
   }
