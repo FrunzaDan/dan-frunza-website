@@ -20,7 +20,7 @@ This is my personal portfolio site as a .NET and Angular developer. The home pag
 - **Frontend:** Angular 22.2 (standalone components, signals, zoneless), TypeScript, plain CSS plus a vendored subset of Bootstrap's grid/utility CSS (`src/bootstrap-essentials.css`)
 - **Backend:** N/A
 - **Database / Storage:** N/A. Project and experience content lives in the components
-- **Tooling & Other:** `@angular/ssr` for build-time prerendering, EmailJS, Vitest + jsdom, Prettier, Firebase Hosting
+- **Tooling & Other:** `@angular/ssr` for build-time prerendering, EmailJS, Vitest + jsdom, ESLint (angular-eslint), Prettier, Firebase Hosting
 
 ---
 
@@ -63,6 +63,8 @@ Or run the npm scripts yourself:
 npm install
 npm start          # dev server on http://localhost:4201
 npm test           # Vitest unit tests
+npm run lint       # ESLint
+npm run format     # Prettier, fixes formatting in place (format:check only reports)
 npm run build      # prerendered static build → dist/dan-frunza-website/browser
 ```
 
